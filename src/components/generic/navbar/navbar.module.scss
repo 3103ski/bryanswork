@@ -1,0 +1,12 @@
+@import 'sass';
+
+.Outer {
+	@include flex-center-center;
+
+	padding: 8px 20px;
+
+	.Link {
+		padding: 10px;
+		margin: 0 3px;
+	}
+}

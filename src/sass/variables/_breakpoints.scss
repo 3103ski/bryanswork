@@ -1,0 +1,54 @@
+$breakpoints: (
+	bp_mobile_lg: 500px,
+	bp_tablet: 768px,
+	bp_computer: 991px,
+	bp_computer_lg: 1200px,
+	bp_widescreen: 1400px,
+);
+
+$break-limits: (
+	bp_limit_mobile_sm_top: map-get($breakpoints, bp_mobile_lg) - 1,
+	bp_limit_mobile_lg_bottom: map-get($breakpoints, bp_mobile_lg),
+	bp_limit_mobile_lg_top: map-get($breakpoints, bp_tablet) - 1,
+	bp_limit_tablet_bottom: map-get($breakpoints, bp_tablet),
+	bp_limit_tablet_top: map-get($breakpoints, bp_computer) - 1,
+	bp_limit_cpu_sm_bottom: map-get($breakpoints, bp_computer),
+	bp_limit_cpu_sm_top: map-get($breakpoints, bp_computer_lg) - 1,
+	bp_limit_cpu_m_bottom: map-get($breakpoints, bp_computer_lg),
+	bp_limit_cpu_m_top: map-get($breakpoints, bp_widescreen) - 1,
+	bp_limit_widescreen: map-get($breakpoints, bp_widescreen),
+);
+
+$media-prefix: 'only screen and ';
+
+$media: (
+	tablet:
+		'#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_tablet_bottom)}) and (max-width: #{map-get($break-limits, bp_limit_tablet_top)})',
+	mobile: '#{$media-prefix}(max-width: #{map-get($break-limits, bp_limit_mobile_lg_top)})',
+	cpu:
+		'#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_cpu_sm_bottom)}) and (max-width: #{map-get($break-limits, bp_limit_cpu_m_top)})',
+	widescreen: '#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_widescreen)})',
+	tablet_min: '#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_tablet_bottom)})',
+	tablet_max: '#{$media-prefix}(max-width: #{map-get($break-limits, bp_limit_tablet_top)})',
+	cpu_min: '#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_cpu_sm_bottom)})',
+	mobile_sm: '#{$media-prefix}(max-width: #{map-get($break-limits, bp_limit_mobile_sm_top)})',
+	mobile_lg:
+		'#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_mobile_lg_bottom)}) and (max-width: #{map-get($break-limits, bp_limit_mobile_lg_top)})',
+	cpu_sm:
+		'#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_cpu_sm_bottom)}) and (max-width: #{map-get($break-limits, bp_limit_cpu_sm_top)})',
+	cpu_m:
+		'#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_cpu_m_bottom)}) and (max-width: #{map-get($break-limits, bp_limit_cpu_m_top)})',
+	cpu_lg: '#{$media-prefix}(min-width: #{map-get($break-limits, bp_limit_cpu_m_bottom)})',
+);
+
+@each $limit-name, $limit in $break-limits {
+	:export {
+		#{$limit-name}: #{map-get($break-limits, #{$limit-name})};
+	}
+}
+
+@each $breakpoint-name, $breakpoint in $breakpoints {
+	:export {
+		#{$breakpoint-name}: #{map-get($breakpoints, #{$breakpoint-name})};
+	}
+}

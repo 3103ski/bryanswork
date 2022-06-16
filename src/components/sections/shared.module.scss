@@ -1,0 +1,13 @@
+@import 'sass';
+
+.Wrapper {
+	@include flex-col-center-center;
+	padding: 20px 40px;
+
+	h1 {
+		@include banner-txt-default;
+	}
+	h3 {
+		@include sub-default;
+	}
+}

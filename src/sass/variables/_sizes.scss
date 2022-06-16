@@ -1,0 +1,11 @@
+$sizes: (
+	sizes_nav_dt_short: 75px,
+	sizes_nav_dt_tall: 110px,
+	sizes_nav_m_toggle: 60px,
+);
+
+@each $size-label, $size in $sizes {
+	:export {
+		#{$size-label}: #{map-get($sizes, #{$size-label})};
+	}
+}

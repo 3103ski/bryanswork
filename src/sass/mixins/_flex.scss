@@ -1,0 +1,58 @@
+//•••••••••••••••••••
+// --> ROW FLEX
+//•••••••••••••••••••
+
+// --> Row Align
+@mixin flex-start {
+	display: flex !important;
+	align-items: flex-start;
+}
+
+@mixin flex-end {
+	display: flex !important;
+	align-items: flex-end;
+}
+
+@mixin flex-center {
+	display: flex !important;
+	align-items: center;
+}
+
+// -->  Content Centered Fully
+@mixin flex-center-center {
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+//•••••••••••••••••••
+// --> COLUMN FLEX
+//•••••••••••••••••••
+
+// --> Column Align
+@mixin flex-col-start {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: flex-start !important;
+}
+
+@mixin flex-col-end {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: flex-end !important;
+}
+
+@mixin flex-col-center {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+}
+
+// Content Centered Fully
+
+@mixin flex-col-center-center {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+}

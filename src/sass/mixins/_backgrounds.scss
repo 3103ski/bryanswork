@@ -1,0 +1,14 @@
+@mixin center-cover-bg {
+	background-size: cover !important;
+	background-position: center !important;
+}
+
+@mixin bottom-cover-bg {
+	background-size: cover !important;
+	background-position: bottom !important;
+}
+
+@mixin top-cover-bg {
+	background-size: cover !important;
+	background-position: top !important;
+}

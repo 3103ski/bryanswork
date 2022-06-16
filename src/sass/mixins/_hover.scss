@@ -1,0 +1,14 @@
+@mixin hover-cursor {
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+@mixin hover-shadow {
+	box-shadow: 2px 2px 5px rgba(38, 38, 38, 0.08) !important;
+}
+
+@mixin hover-two {
+	background-color: rgba(244, 244, 244, 0.76) !important;
+	box-shadow: inset 1px 1px 6px rgba(192, 192, 192, 0.5) !important;
+}

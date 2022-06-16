@@ -1,0 +1,125 @@
+@import 'sass';
+
+.Button {
+	@include flex-center-center;
+	padding: 12px 35px !important;
+	font-size: 15px !important;
+	font-weight: 500 !important;
+	border-radius: 100px !important;
+	display: flex !important;
+	align-items: center !important;
+	letter-spacing: 1px;
+	white-space: nowrap;
+	transition: 0.15s;
+	border: none;
+
+	//•••••••••
+	// BUTTON MARGIN
+	//•••••••••
+	margin: 0 !important;
+
+	&[data-space='10xy'] {
+		margin: 10px !important;
+	}
+	&[data-space='10x'] {
+		margin: 0 10px !important;
+	}
+	&[data-space='10y'] {
+		margin: 10px 0 !important;
+	}
+
+	&[data-space='15x'] {
+		margin: 0 15px !important;
+	}
+
+	&[data-space='20x'] {
+		margin: 0 20px !important;
+	}
+
+	&[data-space='25x'] {
+		margin: 0 25px !important;
+	}
+
+	// UTIL STYLE
+	&[data-self-center='1'] {
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	// ICON BUTTON
+	svg {
+		margin: 0 10px 0 0 !important;
+		font-size: 22px !important;
+	}
+
+	// SIZE
+	&[data-thin='1'] {
+		padding: 8px 17px !important;
+		font-size: 12px !important;
+
+		svg {
+			margin: 0 12px 0 0 !important;
+			font-size: 16px !important;
+		}
+	}
+
+	&[data-only-icon='1'] {
+		svg {
+			margin: 0 !important;
+		}
+	}
+
+	// BUTTON COLORS
+	&[data-color='primary'] {
+		background-color: map-get($colors, color_primary) !important;
+		&:hover {
+			background-color: map-get($colors, color_primaryTransp) !important;
+		}
+	}
+
+	&[data-color='primaryTransp'] {
+		background-color: map-get($colors, color_primaryTransp) !important;
+		&:hover {
+			background-color: map-get($colors, color_primary) !important;
+		}
+	}
+
+	&[data-color='secondary'] {
+		background-color: map-get($colors, color_secondary) !important;
+		&:hover {
+			background-color: map-get($colors, color_secondaryTransp) !important;
+		}
+	}
+
+	&[data-color='secondaryTransp'] {
+		background-color: map-get($colors, color_secondaryTransp) !important;
+		&:hover {
+			background-color: map-get($colors, color_secondary) !important;
+		}
+	}
+
+	&[data-color='none'] {
+		background-color: transparent !important;
+	}
+
+	&[data-color='yelp'] {
+		background-color: map-get($colors, color_yelp) !important;
+	}
+
+	// BUTTON TEXT COLOR
+
+	&[data-txt-color='light'] {
+		color: white !important;
+	}
+
+	&[data-txt-color='dark'] {
+		color: map-get($colors, color_primaryBlack) !important;
+	}
+
+	&[data-color='primary'],
+	&[data-color='primaryTransp'],
+	&[data-color='secondary'],
+	&[data-color='secondaryTransp'] {
+		color: white !important;
+	}
+}
