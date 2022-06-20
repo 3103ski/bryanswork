@@ -1,0 +1,43 @@
+@import 'sass';
+
+@keyframes roll {
+	from {
+		margin-left: 0px;
+	}
+	to {
+		margin-left: var(--total-logo-width);
+	}
+}
+
+.Outer {
+	@include flex-center;
+	position: relative;
+
+	.IconWrapper {
+		position: relative;
+		padding: 20px 0;
+		overflow: hidden;
+		z-index: 3;
+
+		.IconInner {
+			@include flex-center;
+			flex-wrap: nowrap;
+			width: var(--double-logo-width);
+
+			&:first-child {
+				animation: roll var(--animation-duration) linear infinite;
+			}
+		}
+
+		background-color: map-get($colors, color_defaultBlack);
+		border-radius: map-get($borders, borders_small_radius);
+	}
+
+	.ThinBar {
+		position: absolute;
+		height: 10px;
+		width: 100%;
+		z-index: 2;
+		background-color: map-get($colors, color_defaultBlack);
+	}
+}

@@ -1,0 +1,15 @@
+@import 'sass';
+
+.Wrapper {
+	@include flex-center-center;
+	min-height: 600px;
+	height: 100vh;
+
+	h1 {
+		@include banner-txt-default;
+	}
+
+	p {
+		@include p-default;
+	}
+}

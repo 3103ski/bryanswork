@@ -1,0 +1,21 @@
+@import 'sass';
+
+.Toggle {
+	@include flex-center-center;
+	@include hover-cursor;
+
+	position: absolute;
+	z-index: 122;
+	padding: 24px 12px 15px 16px !important;
+	border: none;
+	border-bottom-right-radius: 10px;
+	background-color: map-get($colors, color_primaryTransp);
+
+	height: map-get($sizes, sizes_nav_m_toggle);
+	width: map-get($sizes, sizes_nav_m_toggle);
+
+	svg {
+		margin-top: 4px;
+		position: absolute;
+	}
+}

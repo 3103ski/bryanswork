@@ -40,6 +40,7 @@ export function MotionViewWrapper({ children }) {
 			transition={{ duration: 0.2 }}
 			initial={viewInitial}
 			animate={animatePageEnter}
+			style={{ display: 'flex', flexDirection: 'column' }}
 			exit={animatePageExit}>
 			{children}
 		</motion.div>
@@ -58,6 +59,7 @@ export const motion_variants_nav = {
 		toggleOpen: { backgroundColor: 'rgba(0,0,0,0)' },
 	},
 	desktop: {
+		fillBg: { backgroundColor: Sass.color_defaultBlack },
 		shortNav: { height: Sass.sizes_nav_dt_short },
 		tallNav: { height: Sass.sizes_nav_dt_tall },
 		brandNoScroll: { width: '20vw' },

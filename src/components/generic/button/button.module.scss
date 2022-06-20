@@ -2,15 +2,16 @@
 
 .Button {
 	@include flex-center-center;
-	padding: 12px 35px !important;
-	font-size: 15px !important;
+	@include shadow-default;
+	padding: 17px 35px !important;
+	font-size: 19px !important;
 	font-weight: 500 !important;
-	border-radius: 100px !important;
+	border-radius: map-get($borders, borders_small_radius) !important;
 	display: flex !important;
 	align-items: center !important;
 	letter-spacing: 1px;
 	white-space: nowrap;
-	transition: 0.15s;
+	transition: 0.23s !important;
 	border: none;
 
 	//•••••••••
@@ -48,8 +49,18 @@
 
 	// ICON BUTTON
 	svg {
-		margin: 0 10px 0 0 !important;
 		font-size: 22px !important;
+	}
+
+	&[data-icon-left='1'] {
+		svg {
+			margin: 0 10px 0 0 !important;
+		}
+	}
+	&[data-icon-left='0'] {
+		svg {
+			margin: 0 0 0 10px !important;
+		}
 	}
 
 	// SIZE
@@ -100,6 +111,7 @@
 
 	&[data-color='none'] {
 		background-color: transparent !important;
+		box-shadow: none !important;
 	}
 
 	&[data-color='yelp'] {
@@ -107,19 +119,22 @@
 	}
 
 	// BUTTON TEXT COLOR
+	&[data-color='primary'],
+	&[data-color='primaryTransp'],
+	&[data-color='secondary'],
+	&[data-color='secondaryTransp'] {
+		color: map-get($colors, color_themeBlack) !important;
+	}
 
 	&[data-txt-color='light'] {
 		color: white !important;
 	}
 
 	&[data-txt-color='dark'] {
-		color: map-get($colors, color_primaryBlack) !important;
+		color: map-get($colors, color_defaultBlack) !important;
 	}
 
-	&[data-color='primary'],
-	&[data-color='primaryTransp'],
-	&[data-color='secondary'],
-	&[data-color='secondaryTransp'] {
-		color: white !important;
+	&[data-txt-color='themeDark'] {
+		color: map-get($colors, color_themeBlack) !important;
 	}
 }

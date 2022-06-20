@@ -1,0 +1,38 @@
+@import 'sass';
+
+.DrawerWrapper {
+	@include remove-scrollbar;
+	position: relative;
+	z-index: 121;
+	height: 100vh;
+	width: 375px;
+	background-color: map-get($colors, color_primary);
+	overflow-y: scroll;
+
+	.EstBtn {
+		position: relative;
+		z-index: 130;
+	}
+}
+
+.Backdrop {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100vw;
+	height: 100vh;
+
+	z-index: 10;
+	transition: 0.18s;
+
+	&[data-open='1'] {
+		display: flex;
+		opacity: 1;
+	}
+
+	&[data-open='0'] {
+		display: none;
+		opacity: 0;
+	}
+}

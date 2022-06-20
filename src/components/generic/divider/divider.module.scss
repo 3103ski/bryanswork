@@ -1,0 +1,9 @@
+@import 'sass';
+
+.Divider {
+	height: 5px;
+	width: 100px;
+	background-color: map-get($colors, color_primary);
+	margin-bottom: 25px;
+	margin-left: 20px;
+}

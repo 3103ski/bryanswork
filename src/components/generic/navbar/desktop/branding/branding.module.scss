@@ -1,0 +1,11 @@
+@import 'sass';
+
+.NavBranding {
+	@include hover-cursor;
+	position: absolute;
+	left: 20px;
+
+	img {
+		max-width: 270px !important;
+	}
+}

@@ -10,10 +10,11 @@ import style from './button.module.scss';
 
 export function Button({
 	color = 'primary',
-	txtcolor = 'light',
+	txtcolor = '',
 	icon = null,
 	thin = null,
 	onlyIcon = null,
+	iconLeft = true,
 	space = '',
 	selfCenter = null,
 	children,
@@ -26,12 +27,14 @@ export function Button({
 			data-color={color}
 			data-only-icon={onlyIcon ? 1 : 0}
 			data-txt-color={txtcolor}
+			data-icon-left={iconLeft ? 1 : 0}
 			data-thin={thin ? '1' : '0'}
 			data-self-center={selfCenter ? 1 : 0}
 			className={`${style.Button} ${className}`}
 			{...rest}>
-			{icon ? <Icon icon={icon} /> : null}
+			{icon && iconLeft ? <Icon icon={icon} /> : null}
 			{children}
+			{icon && !iconLeft ? <Icon icon={icon} /> : null}
 		</SUIButton>
 	);
 }

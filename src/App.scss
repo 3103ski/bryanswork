@@ -1,0 +1,5 @@
+@import 'sass';
+
+.App {
+	@include remove-scrollbar;
+}

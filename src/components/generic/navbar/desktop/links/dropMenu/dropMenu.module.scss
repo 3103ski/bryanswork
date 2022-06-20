@@ -1,0 +1,54 @@
+@import 'sass';
+
+.DropMenuContainer {
+	@include hover-cursor;
+	position: relative;
+	height: 100%;
+
+	.DropMenuLabel {
+		@include flex-center-center;
+		padding: 0 12px;
+		height: inherit;
+
+		svg,
+		p {
+			@include p-summary;
+			color: white;
+			transition: 0.17s;
+		}
+
+		p {
+			margin: 0 !important;
+		}
+
+		svg {
+			margin-left: 5px;
+			margin-top: 4px;
+		}
+	}
+	&:hover {
+		.DropMenuLabel {
+			svg,
+			p {
+				opacity: 0.8;
+			}
+		}
+	}
+
+	.DropLinksWrapper {
+		position: absolute;
+		padding: 10px 0px 20px 0px;
+		flex-direction: column;
+		left: 0;
+		border-bottom-left-radius: map-get($borders, borders_small_radius);
+		border-bottom-right-radius: map-get($borders, borders_small_radius);
+
+		.DropLink {
+			@include p-summary;
+			color: white;
+			white-space: nowrap;
+			padding: 10px 30px !important;
+			transition: 0.17s;
+		}
+	}
+}

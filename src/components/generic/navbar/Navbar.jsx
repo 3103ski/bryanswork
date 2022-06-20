@@ -1,22 +1,23 @@
 // --> React
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // --> Project Imports
-import { HOME, ABOUT } from 'routes';
+// import { fetchServiceSlugs } from 'groq';
+// import { checkSeshStorageAddIfNeeded } from 'util';
 
 // --> Component Imports
-import Style from './navbar.module.scss';
+import MobileNav from './mobile-tablet/MobileNav';
+import DesktopNav from './desktop/DesktopNav';
+
+/**
+ * DEV NOTE : For info on framer motion, see nav variants in '/src/util/framerMotion.js'
+ */
 
 export function Navbar() {
 	return (
-		<nav className={Style.Outer}>
-			<Link className={Style.Link} to={HOME}>
-				Home
-			</Link>
-			<Link className={Style.Link} to={ABOUT}>
-				About
-			</Link>
-		</nav>
+		<>
+			<DesktopNav />
+			<MobileNav />
+		</>
 	);
 }

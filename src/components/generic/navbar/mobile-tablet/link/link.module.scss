@@ -1,0 +1,31 @@
+@import 'sass';
+
+.LinkContainer {
+	@include flex-col-center;
+	position: relative;
+	z-index: 121;
+	padding: 85px 30px;
+	overflow: hidden;
+}
+
+.SectionLabel {
+	@include p-summary;
+	margin: 15px 0 15px 0 !important;
+	font-weight: 700 !important;
+}
+
+.Link {
+	@include sub-default;
+
+	padding: 8px 0;
+	margin: 0 !important;
+}
+
+.Link,
+.SectionLabel {
+	color: white;
+
+	&:hover {
+		color: map-get($colors, color_secondary);
+	}
+}

@@ -1,0 +1,9 @@
+@import 'sass';
+.Outer {
+	display: flex;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: inherit;
+	z-index: 100;
+}
