@@ -2,16 +2,17 @@
 import React from 'react';
 
 // --> Project Imports
-import { HomeLandingSection, NeedDeveloperSection, TechStackSection, LogoReel } from 'components';
+import { HomeLandingSection, NeedDeveloperSection, TechStackSection, ProjectsSection, LogoReel } from 'components';
 import ViewWrapper from './ViewWrapper';
 
 export default function HomePage() {
 	return (
 		<ViewWrapper>
 			<HomeLandingSection />
-			<NeedDeveloperSection />
-			<LogoReel />
 			<TechStackSection />
+			<LogoReel />
+			<ProjectsSection />
+			<NeedDeveloperSection />
 		</ViewWrapper>
 	);
 }

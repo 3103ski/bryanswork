@@ -1,20 +1,5 @@
 @import 'sass';
 
-.Wrapper {
-	@include flex-center-center;
-	height: 100vh;
-	width: 100vw;
-	overflow: hidden;
-
-	h1 {
-		@include banner-txt-default;
-	}
-
-	.StackIcons {
-		@include flex-center;
-	}
-
-	p {
-		@include p-default;
-	}
+.StackIcons {
+	@include flex-center;
 }
