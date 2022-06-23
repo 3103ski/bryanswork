@@ -2,11 +2,11 @@
 import React from 'react';
 
 // --> Packages
-import { Ref, Sticky } from 'semantic-ui-react';
+import { Ref } from 'semantic-ui-react';
 
 // --> Project Imports
-import { Filter, Section, ProjectCard, Loading } from 'components';
-import { checkSeshStorageAddIfNeeded, intFromPx } from 'util';
+import { Filters, Section, ProjectCard, Loading } from 'components';
+import { checkSeshStorageAddIfNeeded } from 'util';
 import { fetchProjects } from 'groq';
 import { useFilterManager } from 'hooks';
 
@@ -19,7 +19,6 @@ export default function BrowseProjectsSection() {
 	//•••••••••••••••••••••
 	const [projects, setProjects] = React.useState(null);
 
-	// --> Sanity CMS
 	React.useEffect(() => {
 		checkSeshStorageAddIfNeeded(`bw__projects_browse`, setProjects, fetchProjects, null, 'projects');
 	}, []);
@@ -27,12 +26,12 @@ export default function BrowseProjectsSection() {
 	//•••••••••••••••••••••
 	// --> Project Filters
 	//•••••••••••••••••••••
-	const { setList, handleFilterClick, clearFilters, filterOptions, activeFilters, renderItems, toggleStrictFilters } =
-		useFilterManager({
-			rootKey: 'tech',
-			subKey: 'title',
-		});
-	const filterRef = React.createRef();
+	const { setList, handleFilterClick, clearFilters, filterOptions, activeFilters, renderItems } = useFilterManager({
+		rootKey: 'tech',
+		subKey: 'title',
+	});
+
+	const stickyRef = React.createRef();
 
 	React.useEffect(() => {
 		if (!filterOptions && projects) {
@@ -47,40 +46,25 @@ export default function BrowseProjectsSection() {
 			<Section fluid className={Style.BrowseHeader}>
 				<h1>A bunch of section stuff here</h1>
 			</Section>
-			<Ref innerRef={filterRef}>
+			<Ref innerRef={stickyRef}>
 				<Section fluid>
-					<Sticky context={filterRef} offset={intFromPx(Style.sizes_nav_height)}>
-						<Filter.Wrapper
-							label='Filter Projects By Tech'
-							activeFilters={activeFilters}
-							visible={renderItems.length}
-							clearFilters={clearFilters}
-							showingLabel='projects'
-							total={projects.length}
-							toggleStrict={toggleStrictFilters}>
-							{filterOptions &&
-								filterOptions.map((filter, i) => (
-									<Filter
-										key={`${filter}__${i}`}
-										onClick={handleFilterClick}
-										container={'result_items'}
-										activeFilters={activeFilters}
-										label={filter}
-									/>
-								))}
-						</Filter.Wrapper>
-					</Sticky>
-					<div id='result_wrapper'>
-						<Section id='result_items'>
-							{renderItems.length > 0 ? (
-								renderItems.map((p, i) => (
-									<ProjectCard activeFilters={activeFilters} key={`${p.title}__${i}`} project={p} />
-								))
-							) : (
-								<Filter.NoMatches />
-							)}
-						</Section>
-					</div>
+					<Filters
+						title='Filter Projects By Tech'
+						itemsLabel='projects'
+						stickyContext={stickyRef}
+						totalMatches={renderItems.length}
+						totalItems={projects.length}
+						filterOptions={filterOptions}
+						activeFilters={activeFilters}
+						clearFilters={clearFilters}
+						filterClick={handleFilterClick}
+					/>
+					<Filters.Results
+						renderItems={renderItems}
+						mapFunc={(p, i) => (
+							<ProjectCard activeFilters={activeFilters} key={`${p.title}__${i}`} project={p} />
+						)}
+					/>
 				</Section>
 			</Ref>
 		</div>

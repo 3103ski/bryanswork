@@ -1,6 +1,9 @@
 // --> React
 import React from 'react';
 
+// --> Packages
+import { Sticky, Grid } from 'semantic-ui-react';
+
 // --> Project Imports
 import { intFromPx } from 'util';
 import { Section } from 'components';
@@ -8,9 +11,9 @@ import { Section } from 'components';
 // --> Component Imports
 import Style from './filters.module.scss';
 
-export function Filter({ label = 'Add Label', container, onClick, activeFilters = [] }) {
+function Filter({ label = 'Add Label', resultContainer, onClick, activeFilters = [] }) {
 	function handleOnClick() {
-		const top = document.getElementById(container);
+		const top = document.getElementById(resultContainer);
 		const offset =
 			document.getElementById('filterContainer').getBoundingClientRect().height +
 			intFromPx(Style.sizes_nav_height);
@@ -33,26 +36,74 @@ export function Filter({ label = 'Add Label', container, onClick, activeFilters 
 	);
 }
 
-Filter.Wrapper = ({ label = 'Filters', showingLabel = '', visible, total, clearFilters, children }) => (
-	<div className={Style.FilterSection} id='filterContainer'>
-		<Section>
-			<div className={Style.Top}>
-				<p className={Style.Label}>{label}</p>
-			</div>
-			<div className={Style.FilterWrapper}>{children}</div>
-			<p className={Style.ShowingText}>
-				Showing {visible} of {total} {showingLabel}{' '}
-				{visible < total ? (
-					<span className={Style.ClearBtn} onClick={clearFilters}>
-						clear filters
-					</span>
-				) : null}
-			</p>
-		</Section>
-	</div>
-);
+export function Filters({
+	title = 'Filters',
+	filterOptions,
+	filterClick,
+	itemsLabel = '',
+	totalMatches,
+	totalItems,
+	clearFilters,
+	activeFilters,
+	stickyContext = null,
+}) {
+	const filters = (
+		<div className={Style.FilterSection} id='filterContainer'>
+			<Section>
+				<div className={Style.Top}>
+					<p className={Style.Label}>{title}</p>
+				</div>
+				<div className={Style.FilterWrapper}>
+					{filterOptions.map((filter, i) => (
+						<Filter
+							activeFilters={activeFilters}
+							resultContainer={'result_items'}
+							label={filter}
+							key={`${filter}__${i}`}
+							onClick={filterClick}
+						/>
+					))}
+				</div>
+				<p className={Style.ShowingText}>
+					Showing {totalMatches} of {totalItems} {itemsLabel}{' '}
+					{totalMatches < totalItems ? (
+						<span className={Style.ClearBtn} onClick={clearFilters}>
+							clear filters
+						</span>
+					) : null}
+				</p>
+			</Section>
+		</div>
+	);
 
-Filter.NoMatches = () => (
+	return !stickyContext ? (
+		filters
+	) : (
+		<Sticky context={stickyContext} offset={intFromPx(Style.sizes_nav_height)}>
+			{filters}
+		</Sticky>
+	);
+}
+
+Filters.Results = ({ renderItems, mapFunc, isCol = null }) => {
+	let items = renderItems.length > 0 ? renderItems.map((item, index) => mapFunc(item, index)) : <Filters.NoMatches />;
+
+	return (
+		<div id='result_wrapper'>
+			<Section id='result_items'>
+				{isCol ? (
+					<Grid centered>
+						<Grid.Row>{items}</Grid.Row>
+					</Grid>
+				) : (
+					items
+				)}
+			</Section>
+		</div>
+	);
+};
+
+Filters.NoMatches = () => (
 	<div className={Style.NoMatchesWrapper}>
 		<p>No Matches</p>
 	</div>

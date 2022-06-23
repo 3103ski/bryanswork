@@ -2,12 +2,12 @@
 import React from 'react';
 
 // --> Packages
-import { Grid, Ref, Sticky } from 'semantic-ui-react';
+import { Grid, Ref } from 'semantic-ui-react';
 
 // --> Project Imports
-import { Section, Filter, TechCard, Loading } from 'components';
+import { Section, Filters, TechCard, Loading } from 'components';
 import { fetchTechnologies } from 'groq';
-import { checkSeshStorageAddIfNeeded, intFromPx } from 'util';
+import { checkSeshStorageAddIfNeeded } from 'util';
 import { useFilterManager } from 'hooks';
 
 // --> Component Imports
@@ -15,7 +15,7 @@ import Style from './browseTechSection.module.scss';
 
 export default function BrowseTechSection() {
 	// •••••••••••••••••••••
-	// --> Component Data
+	// --> Tech Data
 	// •••••••••••••••••••••
 	const [tech, setTech] = React.useState(null);
 
@@ -24,14 +24,13 @@ export default function BrowseTechSection() {
 	}, []);
 
 	// ••••••••••••••••••••••••••••
-	// --> Component Data Filters
+	// --> Tech Filters
 	// ••••••••••••••••••••••••••••
-	const { setList, handleFilterClick, clearFilters, filterOptions, activeFilters, renderItems, toggleStrictFilters } =
-		useFilterManager({
-			rootKey: 'tags',
-			subKey: 'title',
-		});
-	const filterColRef = React.createRef();
+	const { setList, handleFilterClick, clearFilters, filterOptions, activeFilters, renderItems } = useFilterManager({
+		rootKey: 'tags',
+		subKey: 'title',
+	});
+	const stickyRef = React.createRef();
 
 	React.useEffect(() => {
 		if (!filterOptions && tech) {
@@ -46,55 +45,37 @@ export default function BrowseTechSection() {
 			<Section fluid className={Style.BrowseHeader}>
 				<h1>A bunch of section stuff here</h1>
 			</Section>
-			<Ref innerRef={filterColRef}>
+			<Ref innerRef={stickyRef}>
 				<Section fluid className={Style.Inner}>
-					<Sticky context={filterColRef} offset={intFromPx(Style.sizes_nav_height)}>
-						<Filter.Wrapper
-							label='Filter Tech By Categories'
-							activeFilters={activeFilters}
-							visible={renderItems.length}
-							clearFilters={clearFilters}
-							showingLabel='technologies'
-							total={tech.length}
-							toggleStrict={toggleStrictFilters}>
-							{filterOptions &&
-								filterOptions.map((filter, i) => (
-									<Filter
-										key={`${filter}__${i}`}
-										container={'result_items'}
-										onClick={handleFilterClick}
-										activeFilters={activeFilters}
-										label={filter}
-									/>
-								))}
-						</Filter.Wrapper>
-					</Sticky>
-					<div id='result_wrapper'>
-						<Section>
-							<Grid centered>
-								<Grid.Row id='result_items'>
-									{renderItems.length > 0 ? (
-										renderItems.map((t, i) => (
-											<Grid.Column key={`${i}__${t.icon}`} computer={5} tablet={8} mobile={16}>
-												<TechCard
-													tech={{
-														tech: t.icon,
-														title: t.title,
-														confidence: t.confidence,
-														usage: t.usage,
-														description: t.description,
-														link: t.link,
-													}}
-												/>
-											</Grid.Column>
-										))
-									) : (
-										<Filter.NoMatches />
-									)}
-								</Grid.Row>
-							</Grid>
-						</Section>
-					</div>
+					<Filters
+						title='Filter Tech By Categories'
+						itemsLabel='technologies'
+						stickyContext={stickyRef}
+						totalMatches={renderItems.length}
+						totalItems={tech.length}
+						filterOptions={filterOptions}
+						activeFilters={activeFilters}
+						clearFilters={clearFilters}
+						filterClick={handleFilterClick}
+					/>
+					<Filters.Results
+						renderItems={renderItems}
+						isCol
+						mapFunc={(t, i) => (
+							<Grid.Column key={`${i}__${t.icon}`} computer={5} tablet={8} mobile={16}>
+								<TechCard
+									tech={{
+										tech: t.icon,
+										title: t.title,
+										confidence: t.confidence,
+										usage: t.usage,
+										description: t.description,
+										link: t.link,
+									}}
+								/>
+							</Grid.Column>
+						)}
+					/>
 				</Section>
 			</Ref>
 		</div>
