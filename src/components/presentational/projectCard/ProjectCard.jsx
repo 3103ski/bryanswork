@@ -13,13 +13,22 @@ import { PROJECT_PAGE } from 'routes';
 // --> Component Imports
 import Style from './projectCard.module.scss';
 
-export function ProjectCard({ project }) {
+export function ProjectCard({ project, activeFilters = [] }) {
+	const calcFilterMacthes = (filters) => {
+		let tech = project.tech.map((p) => p.title);
+		let matchedTech = [];
+		for (let x = 0; x < tech.length; x++) {
+			if (filters.includes(tech[x])) matchedTech.push(tech[x]);
+		}
+		return matchedTech.join(', ');
+	};
+
 	return (
 		project && (
 			<div className={Style.Wrapper}>
 				<Grid>
 					<Grid.Row>
-						<Grid.Column mobile={16} tablet={11} computer={13}>
+						<Grid.Column className={Style.Content} mobile={16} tablet={11} computer={13}>
 							<h1>{project.title}</h1>
 							<div className={Style.TechWrapper}>
 								{project.tech.map((tech, i) => (
@@ -46,6 +55,9 @@ export function ProjectCard({ project }) {
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
+				{activeFilters.length > 0 ? (
+					<p className={Style.FilterMatches}>Matches: {calcFilterMacthes(activeFilters)}</p>
+				) : null}
 			</div>
 		)
 	);

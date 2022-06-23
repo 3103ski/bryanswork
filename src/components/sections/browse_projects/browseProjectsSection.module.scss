@@ -7,5 +7,10 @@
 	.BrowseHeader {
 		@include flex-center-center;
 		height: 400px;
+		background-color: map-get($colors, color_secondary);
+		h1 {
+			color: white;
+			@include banner-txt-default;
+		}
 	}
 }

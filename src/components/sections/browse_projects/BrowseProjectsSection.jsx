@@ -73,7 +73,9 @@ export default function BrowseProjectsSection() {
 					<div id='result_wrapper'>
 						<Section id='result_items'>
 							{renderItems.length > 0 ? (
-								renderItems.map((p, i) => <ProjectCard key={`${p.title}__${i}`} project={p} />)
+								renderItems.map((p, i) => (
+									<ProjectCard activeFilters={activeFilters} key={`${p.title}__${i}`} project={p} />
+								))
 							) : (
 								<Filter.NoMatches />
 							)}
