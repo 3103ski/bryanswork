@@ -1,13 +1,16 @@
 // --> React
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // --> Packages
 import { motion } from 'framer-motion';
+import { Icon } from '@iconify/react';
 
 // --> Project Imports
 import { motion_variants_nav } from 'util';
 // import { Button } from 'components';
-import { HOME, ABOUT } from 'routes';
+import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH } from 'routes';
+import { BACK_ARROW } from 'icons';
 
 // --> Component Imports
 // import NavBranding from './branding/Branding';
@@ -17,6 +20,8 @@ import Style from './desktopNav.module.scss';
 
 export default function DesktopNav({ services }) {
 	const [scrolled, setScrolled] = React.useState(false);
+	const location = useLocation();
+	const navigate = useNavigate();
 
 	const handleOnScroll = React.useCallback(() => {
 		let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -37,13 +42,25 @@ export default function DesktopNav({ services }) {
 			<motion.nav
 				className={Style.ContainerInner}
 				data-scrolled={scrolled ? 1 : 0}
-				animate={scrolled === true ? 'shortNav' : 'tallNav'}
+				data-is-home={location.pathname === HOME ? 1 : 0}
 				variants={motion_variants_nav.desktop}>
+				<div
+					className={Style.BackButton}
+					onClick={() => navigate(-1)}
+					data-is-home={location.pathname === HOME ? 1 : 0}>
+					<div className={Style.BtnContent}>
+						<Icon icon={BACK_ARROW} />
+						<p>Back</p>
+					</div>
+					<svg width={'100%'} height={'100%'}>
+						<path d='M 0 0 l 100 0 q 0 100 -100 100 l -100 0 ' fill={Style.color_primary} />
+					</svg>
+				</div>
 				<div className={Style.CenterLinks}>
 					<DropMenu
 						links={[
-							{ label: 'Videos', to: ABOUT },
-							{ label: 'Our Work', to: ABOUT },
+							{ label: 'Projects', to: EXPLORE_PROJECTS },
+							{ label: 'Tech Experience', to: EXPLORE_TECH },
 						]}>
 						Explore
 					</DropMenu>

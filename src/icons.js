@@ -10,6 +10,7 @@ export const PHONE = `carbon:phone-voice-filled`;
 export const MONEY = `bxs:dollar-circle`;
 
 // -->  Layout Icons
+export const BACK_ARROW = `akar-icons:arrow-left`;
 export const ARROW_RIGHT = `bi:arrow-right-circle-fill`;
 export const CARROT_DOWN = `ant-design:caret-down-outlined`;
 export const LEFT_DISC = `ant-design:left-circle-filled`;

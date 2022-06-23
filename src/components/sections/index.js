@@ -5,3 +5,7 @@ export { default as TechStackSection } from './home_techStack/TechStackSection.j
 
 // About Page Section
 export { default as AboutHeaderSection } from './about_header/HeaderSection.jsx';
+
+// Explore Pages
+export { default as BrowseTechSection } from './browse_tech/BrowseTechSection.jsx';
+export { default as BrowseProjectSection } from './browse_projects/BrowseProjectsSection.jsx';

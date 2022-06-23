@@ -4,7 +4,9 @@ import React from 'react';
 import {
 	js,
 	react,
+	bootstrap,
 	webflow,
+	codepen,
 	html,
 	netlify,
 	sass,
@@ -14,6 +16,7 @@ import {
 	cloudinary,
 	css,
 	express,
+	semanticui,
 	figma,
 	gatsby,
 	github,
@@ -24,6 +27,7 @@ import {
 	npm,
 	sanity,
 	stripe,
+	instagram,
 	vscode,
 } from './logos';
 
@@ -33,11 +37,20 @@ export function TechLogo({ width = '100%', logo = 'js', style = {}, ...rest }) {
 		case 'apollo':
 			src = apollo;
 			break;
+		case 'bootstrap':
+			src = bootstrap;
+			break;
 		case 'aws':
 			src = aws;
 			break;
 		case 'cloudinary':
 			src = cloudinary;
+			break;
+		case 'codepen':
+			src = codepen;
+			break;
+		case 'semanticui':
+			src = semanticui;
 			break;
 		case 'netlify':
 			src = netlify;
@@ -62,6 +75,9 @@ export function TechLogo({ width = '100%', logo = 'js', style = {}, ...rest }) {
 			break;
 		case 'heroku':
 			src = heroku;
+			break;
+		case 'instagram':
+			src = instagram;
 			break;
 		case 'mongodb':
 			src = mongodb;

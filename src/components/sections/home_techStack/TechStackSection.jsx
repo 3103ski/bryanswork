@@ -1,5 +1,6 @@
 // --> React
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // --> Packages
 import { Grid } from 'semantic-ui-react';
@@ -7,6 +8,7 @@ import { Grid } from 'semantic-ui-react';
 // --> Project Imports
 import { Section, TechLogo, Button } from 'components';
 import { ARROW_RIGHT } from 'icons';
+import { EXPLORE_TECH } from 'routes';
 
 // --> Component Imports
 import Style from './techStackSection.module.scss';
@@ -18,7 +20,7 @@ export default function TechStackSection() {
 			<Section>
 				<Grid>
 					<Grid.Row>
-						<Grid.Column mobile={16} computer={10}>
+						<Grid.Column className={Style.SectionContent} mobile={16} computer={10}>
 							<h1>Primary Tech Stack</h1>
 							<div className={Style.StackIcons}>
 								{priamryStack.map((tech, i) => (
@@ -35,13 +37,12 @@ export default function TechStackSection() {
 								MongoDB. I have a passion for developement and love exploring other tools and tech when
 								I have free time.
 							</p>
-							<Button space='10y'>Explore Other Things I've Used</Button>
+							<Link to={EXPLORE_TECH}>
+								<Button space='10y'>Explore Other Things I've Used</Button>
+							</Link>
 							<Button color={'none'} icon={ARROW_RIGHT} iconLeft={false}>
 								Read About My Practices
 							</Button>
-						</Grid.Column>
-						<Grid.Column mobile={16} computer={6}>
-							<TechLogo logo='react' />
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>

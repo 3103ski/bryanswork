@@ -1,6 +1,6 @@
 // --> React
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // --> Project Imports
 import { Grid } from 'semantic-ui-react';
@@ -8,6 +8,7 @@ import { Grid } from 'semantic-ui-react';
 // --> Project Imports
 import { Section, Divider, Button } from 'components';
 import { profile_pic } from 'assets';
+import { EXPLORE_PROJECTS, REQUEST_QUOTE } from 'routes';
 
 // --> Component Imports
 import VectorGraphic from './vectorGraphic/VectorGraphic.jsx';
@@ -43,8 +44,12 @@ export default function HomeLandingSection() {
 					<Grid.Row>
 						<Grid.Column computer={16} mobile={16}>
 							<div className={Style.Buttons}>
-								<Button space='10xy'>Explore My Work</Button>
-								<Button space='10xy'>Request Website Quote</Button>
+								<Link to={EXPLORE_PROJECTS}>
+									<Button space='10xy'>Explore My Work</Button>
+								</Link>
+								<Link to={REQUEST_QUOTE}>
+									<Button space='10xy'>Request Website Quote</Button>
+								</Link>
 							</div>
 						</Grid.Column>
 					</Grid.Row>

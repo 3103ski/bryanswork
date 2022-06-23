@@ -1,0 +1,38 @@
+@import 'sass';
+
+.Wrapper {
+	padding: 20px 20px 30px 20px;
+	border-bottom: 1px solid map-get($colors, color_themeBlack);
+
+	h1 {
+		@include sub-default;
+		margin: 0 0 8px 0 !important;
+	}
+
+	p {
+		@include p-small;
+
+		padding: 0;
+		&:first-of-type {
+			padding: 10px 0 0px 0;
+		}
+	}
+
+	&:first-of-type {
+		margin-top: 10px;
+		border-top-left-radius: map-get($borders, borders_small_radius);
+		border-top-right-radius: map-get($borders, borders_small_radius);
+	}
+
+	&:last-of-type {
+		border-bottom: none;
+		margin-bottom: 30px;
+		border-bottom-left-radius: map-get($borders, borders_small_radius);
+		border-bottom-right-radius: map-get($borders, borders_small_radius);
+	}
+
+	&:hover {
+		// background-color: rgba(44, 44, 44, 0.049);
+		background-color: #eef2f336;
+	}
+}

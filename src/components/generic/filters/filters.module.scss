@@ -1,0 +1,74 @@
+@import 'sass';
+
+.NoMatchesWrapper {
+	@include flex-center-center;
+	width: 100%;
+	height: 300px;
+}
+
+.FilterSection {
+	background-color: map-get($colors, color_themeWhite);
+	padding: 20px 20px 10px 20px !important;
+	margin-bottom: 30px;
+	z-index: 100;
+	transition: 0.3s;
+
+	.Top {
+		.Label {
+			@include p-small;
+			font-weight: 700 !important;
+			color: map-get($colors, color_themeBlack);
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.FilterWrapper {
+		@include flex-start;
+		flex-wrap: wrap;
+		align-items: center;
+		width: 100%;
+		padding: 10px 0;
+
+		.Filter {
+			@include flex-center-center;
+			@include hover-cursor;
+			@include no-select;
+
+			border: 1px solid map-get($colors, color_defaultBlack);
+			padding: 5px 10px;
+			border-radius: map-get($borders, borders_small_radius);
+			margin: 0 5px 5px 0;
+			transition: 0.15s;
+
+			p {
+				font-size: 11px;
+			}
+
+			&[data-active='1'] {
+				background-color: map-get($colors, color_primary);
+				border-color: map-get($colors, color_primary);
+			}
+
+			&:hover {
+				transform: scale(1.05);
+				border-color: map-get($colors, color_primary);
+			}
+		}
+	}
+
+	.ShowingText {
+		font-size: 12px;
+
+		.ClearBtn {
+			@include hover-cursor;
+			margin-left: 20px;
+			font-size: 10px;
+			&:hover {
+				opacity: 0.75;
+			}
+		}
+	}
+}

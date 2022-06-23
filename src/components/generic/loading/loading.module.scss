@@ -1,0 +1,27 @@
+@import 'sass';
+
+.Wrapper {
+	@include flex-center-center;
+	width: 100%;
+
+	&[data-size='none'] {
+		height: unset !important;
+		width: unset !important;
+	}
+
+	&[data-size='small'] {
+		height: 300px;
+	}
+
+	&[data-size='large'] {
+		height: 500px;
+	}
+
+	&[data-size='screen'] {
+		height: 100vh !important;
+	}
+
+	.Loader {
+		position: relative;
+	}
+}

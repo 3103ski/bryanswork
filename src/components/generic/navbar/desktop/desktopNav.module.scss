@@ -10,8 +10,56 @@
 		top: 0;
 		left: 0;
 		transition: 0.3s;
-		&[data-scrolled='1'] {
+		height: map-get($sizes, sizes_nav_height);
+
+		&[data-scrolled='1'],
+		&[data-is-home='0'] {
 			background-color: map-get($colors, color_defaultBlack);
+		}
+
+		@keyframes enter-button {
+			from {
+				top: -100px;
+				left: -100px;
+			}
+			to {
+				top: 0;
+				left: 0;
+			}
+		}
+		.BackButton {
+			@include hover-cursor;
+
+			position: absolute;
+			z-index: 1002;
+			width: 100px;
+			height: 100px;
+			top: -100px;
+			left: -100px;
+			transition: 0.25s;
+			animation: enter-button 0.4s ease forwards;
+
+			.BtnContent {
+				@include flex-center;
+				padding: 30px 0 0 20px;
+				position: absolute;
+
+				svg,
+				p {
+					@include p-small;
+				}
+			}
+
+			&[data-is-home='1'] {
+				display: none;
+			}
+
+			&:hover {
+				path {
+					@include shadow-default;
+				}
+				transform: scale(1.1);
+			}
 		}
 
 		.CenterLinks,

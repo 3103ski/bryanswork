@@ -1,0 +1,11 @@
+@import 'sass';
+
+.Wrapper {
+	min-height: 500px;
+	margin-top: map-get($sizes, sizes_nav_height);
+
+	.BrowseHeader {
+		@include flex-center-center;
+		height: 400px;
+	}
+}

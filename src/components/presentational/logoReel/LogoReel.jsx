@@ -8,7 +8,7 @@ import { TechLogo, Section } from 'components';
 import Style from './logoReel.module.scss';
 
 export function LogoReel() {
-	let [logoWidth, logoMargin] = [60, 40];
+	let [logoWidth, logoMargin] = [70, 40];
 	let tech = [
 		'html',
 		'sass',
@@ -64,7 +64,9 @@ export function LogoReel() {
 					</div>
 				</div>
 			</Section>
-			<div className={Style.ThinBar} />
+			<div className={Style.ThinBar}>
+				<Section style={{ height: '100%', backgroundColor: 'white' }} />
+			</div>
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
 // --> React
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // --> Packages
 import { Grid } from 'semantic-ui-react';
@@ -7,6 +8,7 @@ import { Grid } from 'semantic-ui-react';
 // --> Project Imports
 import { Section, Divider, Button } from 'components';
 import { ARROW_RIGHT } from 'icons';
+import { EXPLORE_PROJECTS, REQUEST_QUOTE } from 'routes';
 
 // --> Component Imports
 import Style from './needDecSection.module.scss';
@@ -24,10 +26,14 @@ export default function NeedDevSection() {
 								If you need a website or web app, you can get an estimate by filling out a quote form.
 								Feel free to contact me with questions
 							</p>
-							<Button space='10y'>Request A Quote</Button>
-							<Button icon={ARROW_RIGHT} color='none' iconLeft={false}>
-								See Some Work
-							</Button>
+							<Link to={REQUEST_QUOTE}>
+								<Button space='10y'>Request A Quote</Button>
+							</Link>
+							<Link to={EXPLORE_PROJECTS}>
+								<Button icon={ARROW_RIGHT} color='none' iconLeft={false}>
+									See Some Work
+								</Button>
+							</Link>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>

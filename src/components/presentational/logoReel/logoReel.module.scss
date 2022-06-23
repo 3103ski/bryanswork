@@ -12,6 +12,8 @@
 .Outer {
 	@include flex-center;
 	position: relative;
+	// border-top: 2px solid map-get($colors, color_defaultBlack);
+	// border-bottom: 2px solid map-get($colors, color_defaultBlack);
 
 	.IconWrapper {
 		position: relative;
@@ -28,14 +30,17 @@
 				animation: roll var(--animation-duration) linear infinite;
 			}
 		}
-
-		background-color: map-get($colors, color_defaultBlack);
+		border: 1px solid map-get($colors, color_defaultBlack);
 		border-radius: map-get($borders, borders_small_radius);
+
+		// border-left: 2px solid map-get($colors, color_defaultBlack);
+		// border-right: 2px solid map-get($colors, color_defaultBlack);
+		// background-color: map-get($colors, color_defaultBlack);
 	}
 
 	.ThinBar {
 		position: absolute;
-		height: 10px;
+		height: 2px;
 		width: 100%;
 		z-index: 2;
 		background-color: map-get($colors, color_defaultBlack);

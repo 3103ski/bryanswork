@@ -40,6 +40,8 @@
 		padding: 10px 0px 20px 0px;
 		flex-direction: column;
 		left: 0;
+
+		background-color: map-get($colors, color_themeBlack);
 		border-bottom-left-radius: map-get($borders, borders_small_radius);
 		border-bottom-right-radius: map-get($borders, borders_small_radius);
 
@@ -49,6 +51,11 @@
 			white-space: nowrap;
 			padding: 10px 30px !important;
 			transition: 0.17s;
+
+			&:hover {
+				background-color: map-get($colors, color_defaultBlack);
+				color: map-get($colors, color_primary);
+			}
 		}
 	}
 }

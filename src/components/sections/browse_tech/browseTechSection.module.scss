@@ -1,0 +1,8 @@
+@import 'sass';
+
+.BrowseHeader {
+	@include flex-center-center;
+	margin-top: map-get($sizes, sizes_nav_dt_short);
+	background-color: map-get($colors, color_primaryPale);
+	height: 350px;
+}
