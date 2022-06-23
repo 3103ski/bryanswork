@@ -11,30 +11,11 @@ import { Section } from 'components';
 // --> Component Imports
 import Style from './filters.module.scss';
 
-function Filter({ label = 'Add Label', resultContainer, onClick, activeFilters = [] }) {
-	function handleOnClick() {
-		const top = document.getElementById(resultContainer);
-		const offset =
-			document.getElementById('filterContainer').getBoundingClientRect().height +
-			intFromPx(Style.sizes_nav_height);
-		const wrapper = document.getElementById('result_wrapper');
-		if (top && wrapper) {
-			wrapper.style.minHeight = `${window.innerHeight - offset}px`;
-			window.scrollTo({
-				behavior: 'smooth',
-				top: top.getBoundingClientRect().top - document.body.getBoundingClientRect().top - offset - 20,
-			});
-		}
-
-		return onClick(label);
-	}
-
-	return (
-		<div className={Style.Filter} data-active={activeFilters.includes(label) ? 1 : 0} onClick={handleOnClick}>
-			<p>{label}</p>
-		</div>
-	);
-}
+/**
+ * NOTE :: These components should be used with the useFilterManager hook.
+ * These and the hook should be implimented in the component where
+ * the data lives and will be browsed.
+ */
 
 export function Filters({
 	title = 'Filters',
@@ -56,10 +37,9 @@ export function Filters({
 				<div className={Style.FilterWrapper}>
 					{filterOptions.map((filter, i) => (
 						<Filter
-							activeFilters={activeFilters}
-							resultContainer={'result_items'}
-							label={filter}
 							key={`${filter}__${i}`}
+							activeFilters={activeFilters}
+							label={filter}
 							onClick={filterClick}
 						/>
 					))}
@@ -82,6 +62,39 @@ export function Filters({
 		<Sticky context={stickyContext} offset={intFromPx(Style.sizes_nav_height)}>
 			{filters}
 		</Sticky>
+	);
+}
+
+/**
+ *
+ * @param {string} label - The label that will appear above the filter options
+ * @param {function} onClick - This onClick should be provided by the filterManager hook.
+ * @returns a functional filter option
+ */
+
+function Filter({ label = 'Add Label', onClick, activeFilters = [] }) {
+	function handleFilterClick() {
+		const top = document.getElementById('result_items');
+		const wrapper = document.getElementById('result_wrapper');
+		const offset =
+			document.getElementById('filterContainer').getBoundingClientRect().height +
+			intFromPx(Style.sizes_nav_height);
+
+		if (top && wrapper) {
+			wrapper.style.minHeight = `${window.innerHeight - offset}px`;
+			window.scrollTo({
+				behavior: 'smooth',
+				top: top.getBoundingClientRect().top - document.body.getBoundingClientRect().top - offset - 20,
+			});
+		}
+
+		return onClick(label);
+	}
+
+	return (
+		<div className={Style.Filter} data-active={activeFilters.includes(label) ? 1 : 0} onClick={handleFilterClick}>
+			<p>{label}</p>
+		</div>
 	);
 }
 
