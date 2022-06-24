@@ -78,9 +78,15 @@ export default {
 			of: [{ type: 'reference', to: { type: 'tech' } }],
 		},
 		{
-			name: 'body',
-			title: 'Body',
+			name: 'description',
+			title: 'description',
 			type: 'blockContent',
+		},
+		{
+			name: 'mockups',
+			title: 'Mockups',
+			type: 'array',
+			of: [{ type: 'image' }],
 		},
 	],
 };

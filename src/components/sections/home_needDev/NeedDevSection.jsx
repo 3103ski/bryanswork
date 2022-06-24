@@ -3,7 +3,7 @@ import React from 'react';
 
 // --> Project Imports
 import { HomePageSection } from 'components';
-import { EXPLORE_PROJECTS, REQUEST_QUOTE } from 'routes';
+import { REQUEST_QUOTE } from 'routes';
 
 // --> Component Imports
 // import Style from './needDecSection.module.scss';
@@ -15,6 +15,6 @@ export default function NeedDevSection() {
 			text='If you need a website or web app, you can get an estimate by filling out a quote form.
 			Feel free to contact me with questions'
 			button1={{ text: `Request A Quote`, route: REQUEST_QUOTE }}
-			button2={{ text: `See Some Work`, route: EXPLORE_PROJECTS }}></HomePageSection>
+			button2={{ text: `Send A Message`, route: REQUEST_QUOTE }}></HomePageSection>
 	);
 }

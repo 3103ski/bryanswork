@@ -1,0 +1,47 @@
+@import 'sass';
+
+.Container {
+	.Tabs {
+		@include flex-start;
+		position: relative;
+
+		.TabsInner {
+			@include flex-center-center;
+			.Tab {
+				@include flex-center-center;
+				@include hover-cursor;
+				margin: 0 20px 0 0;
+				p {
+					@include p-small;
+					padding: 10px;
+				}
+			}
+		}
+
+		.ActiveMarker {
+			position: absolute;
+			transition: 0.2s;
+			bottom: 0;
+			height: 4px;
+			width: var(--markerWidth);
+			left: var(--markerLeft);
+			background-color: map-get($colors, color_primary);
+			border-radius: 2px;
+		}
+	}
+
+	.PanelsOuter {
+		overflow: hidden;
+		.PanelsInner {
+			@include flex-start;
+			position: relative;
+			transition: 0.3s;
+
+			.Panel {
+				padding: 10px;
+				position: inherit;
+				white-space: nowrap;
+			}
+		}
+	}
+}

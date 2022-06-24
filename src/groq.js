@@ -74,7 +74,11 @@ export function fetchProject(slug) {
             year,
             category,
             status,
-            body,
+            description,
+            tech[]->{
+                title,
+                icon
+            },
             mainImage{
                 asset-> {
                     url, 

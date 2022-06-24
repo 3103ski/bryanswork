@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 // --> Project Imports
-import { Loading, ProjectTemplateHeader } from 'components';
+import { Loading, ProjectTemplateHeader, ProjectTabSection } from 'components';
 import { checkSeshStorageAddIfNeeded } from 'util';
 import { fetchProject } from 'groq';
 
@@ -17,12 +17,13 @@ export default function ProjectTemplatePage() {
 	React.useEffect(() => {
 		checkSeshStorageAddIfNeeded(`fmlc_${slug}__article`, setProject, () => fetchProject(slug));
 	}, [slug]);
-	console.log({ project });
+
 	return !project ? (
 		<Loading size='screen' />
 	) : (
 		<ViewWrapper>
 			<ProjectTemplateHeader project={project} />
+			<ProjectTabSection project={project} />
 		</ViewWrapper>
 	);
 }

@@ -10,8 +10,6 @@ import { Loading, Section, Detail, Button } from 'components';
 import Style from './projectHeader.module.scss';
 
 export default function ProjectHeader({ project }) {
-	console.log({ project });
-
 	return !project ? (
 		<Loading />
 	) : (
