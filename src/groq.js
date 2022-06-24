@@ -63,46 +63,28 @@ export function fetchProjects() {
 	);
 }
 
-// export function fetchAboutPageInfo() {
-// 	return sanityClient.fetch(
-// 		`*[_type == 'about'][0]{
-//             headerText,
-//             headerVideo,
-//             bioHeader,
-//             bio
-//         }`
-// 	);
-// }
-
-// // Get Specific Service Content
-// export function fetchServiceTemplateContent(slug) {
-// 	return sanityClient.fetch(
-// 		`*[slug.current == $slug][0]{
-//             title,
-//             body,
-//             subtitle,
-//             graphic->{
-//                 img{
-//                     asset->{
-//                         url,
-//                         _id
-//                     }
-//                 }
-//             },
-//             faqs[]-> {
-//                 question,
-//                 answer
-//             },
-//             mainImage{
-//                 asset->{
-//                     url,
-//                     _id
-//                 }
-//             }
-//         }`,
-// 		{ slug }
-// 	);
-// }
+// Get Specific Service Content
+export function fetchProject(slug) {
+	return sanityClient.fetch(
+		`*[slug.current == $slug][0]{
+            title,
+            slug, 
+            projectLink,
+            projectType,
+            year,
+            category,
+            status,
+            body,
+            mainImage{
+                asset-> {
+                    url, 
+                    _id
+                }
+            }
+        }`,
+		{ slug }
+	);
+}
 
 //---------
 // --> PORTFOLIO ITEMS

@@ -1,1 +1,40 @@
 @import 'sass';
+
+.HeaderWrapper {
+	@include flex-center-center;
+	padding-top: calc(#{map-get($sizes, sizes_nav_height)} + 30px);
+	margin-bottom: 35px;
+
+	.TitleWrapper {
+		@include flex-end;
+		width: 100%;
+		justify-content: space-between;
+
+		padding-bottom: 14px;
+
+		h1 {
+			@include body-hdr-default;
+			margin: 0 !important;
+		}
+
+		p {
+			font-size: 11px;
+			background-color: map-get($colors, color_secondary);
+			color: white;
+			padding: 2px 10px;
+			border-radius: 10px;
+		}
+	}
+
+	.DetailsColumn {
+		.DetailInner {
+			height: 100%;
+			display: flex !important;
+			flex-direction: column;
+
+			.ProjectLink {
+				margin: auto !important;
+			}
+		}
+	}
+}

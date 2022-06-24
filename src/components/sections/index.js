@@ -10,3 +10,6 @@ export { default as AboutHeaderSection } from './about_header/HeaderSection.jsx'
 // Explore Pages
 export { default as BrowseTechSection } from './browse_tech/BrowseTechSection.jsx';
 export { default as BrowseProjectSection } from './browse_projects/BrowseProjectsSection.jsx';
+
+// Project Template Page
+export { default as ProjectTemplateHeader } from './project_header/ProjectHeader.jsx';

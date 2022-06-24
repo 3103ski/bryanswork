@@ -1,0 +1,12 @@
+@import 'sass';
+
+.Wrapper {
+	padding: 8px 0 10px 0;
+	h5 {
+		@include p-default;
+		margin: 0 0 5px 0;
+	}
+	p {
+		@include p-small;
+	}
+}
