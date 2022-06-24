@@ -84,6 +84,12 @@ export function fetchProject(slug) {
                     url, 
                     _id
                 }
+            },
+            mockups[]{
+                asset-> {
+                    url,
+                    _id
+                }
             }
         }`,
 		{ slug }

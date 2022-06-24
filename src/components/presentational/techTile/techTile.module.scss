@@ -1,0 +1,31 @@
+@import 'sass';
+
+.Wrapper {
+	@include flex-col-center-center;
+	@include no-select;
+	box-sizing: border-box;
+	padding: 30px 20px;
+	width: 100%;
+	max-width: 200px;
+	background-color: map-get($colors, color_themeWhite);
+	margin: 10px;
+	border-radius: map-get($borders, borders_small_radius);
+
+	.LogoWrapper {
+		width: 50%;
+		min-width: 80px;
+		max-width: 130px;
+	}
+
+	p {
+		font-size: 12px;
+		font-weight: 300;
+		padding: 10px 0;
+		text-align: center;
+	}
+	transition: 0.2s;
+	&:hover {
+		transform: scale(1.05) rotate(5deg);
+		cursor: pointer;
+	}
+}

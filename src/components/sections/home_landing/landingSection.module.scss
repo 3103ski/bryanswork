@@ -8,11 +8,11 @@
 	position: relative;
 
 	.Top {
-		@include flex-center-center;
+		@include flex-end;
 		position: inherit;
-		z-index: 101;
+		z-index: 100;
 		min-height: 60vh;
-		padding: 0 0 100px 0;
+		padding: 0 0 130px 0;
 		box-sizing: border-box;
 
 		.ProfilePic {

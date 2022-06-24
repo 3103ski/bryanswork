@@ -12,8 +12,6 @@
 .Outer {
 	@include flex-center;
 	position: relative;
-	// border-top: 2px solid map-get($colors, color_defaultBlack);
-	// border-bottom: 2px solid map-get($colors, color_defaultBlack);
 
 	.IconWrapper {
 		position: relative;
@@ -32,10 +30,6 @@
 		}
 		border: 1px solid map-get($colors, color_defaultBlack);
 		border-radius: map-get($borders, borders_small_radius);
-
-		// border-left: 2px solid map-get($colors, color_defaultBlack);
-		// border-right: 2px solid map-get($colors, color_defaultBlack);
-		// background-color: map-get($colors, color_defaultBlack);
 	}
 
 	.ThinBar {

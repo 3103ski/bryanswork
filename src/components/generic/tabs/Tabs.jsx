@@ -1,14 +1,20 @@
+// --> React
 import React from 'react';
 
+// --> Project Imports
+import { Loading } from 'components';
+
+// --> Component Imports
 import Style from './tabs.module.scss';
 
 export function Tabs({ panels = [], tabs = [] }) {
 	// Container State
-	const [active, setActive] = React.useState(0);
 	const [containerWidth, setContainerWidth] = React.useState(null);
+	const [reversedPanels, setReversedPanels] = React.useState(null);
+	const [activePanel, setActivePanel] = React.useState(0);
 
 	// Marker State
-	const [markerWidth, setMakerWidth] = React.useState(null);
+	const [markerWidth, setMarkerWidth] = React.useState(null);
 	const [markerLeft, setMarkerLeft] = React.useState(0);
 
 	// Refs
@@ -16,7 +22,14 @@ export function Tabs({ panels = [], tabs = [] }) {
 	const panelsInnerRef = React.createRef();
 	const tabsInnerRef = React.createRef();
 
+	// --> A helper to return calculated margin in a readable way
+	const calcMargin = React.useCallback((index, length, width) => {
+		return (length - (index + 1)) * width;
+	}, []);
+
 	// --> PANELS
+	const [innerPanelMarginLeft, setInnerPanelMarginLeft] = React.useState(null);
+
 	// Panel Component -> will get its default width from whatever the parent is.
 	function Panel({ children }) {
 		return (
@@ -25,9 +38,6 @@ export function Tabs({ panels = [], tabs = [] }) {
 			</div>
 		);
 	}
-
-	// const [activePanelHeight, setActivePanelHeight] = React.useState(null);
-	const [innerPanelMarginLeft, setInnerPanelMarginLeft] = React.useState(null);
 
 	// --> TABS
 	function Tab({ tab, ...rest }) {
@@ -39,38 +49,70 @@ export function Tabs({ panels = [], tabs = [] }) {
 	}
 
 	// Tab Click -> must push the marker to the location of that tab and set active panel
-	const calcMargin = React.useCallback((index, length, width) => {
-		return (length - (index + 1)) * width;
-	}, []);
-
 	const handleTabClick = React.useCallback(
 		(tabIndex) => {
-			// tab related rects
+			// handle tab underline position & width
 			let tab = tabsInnerRef.current.children[tabIndex].getBoundingClientRect();
 			let containerOffset = tabsInnerRef.current.getBoundingClientRect().left;
 			setMarkerLeft(tab.left - containerOffset);
-			setMakerWidth(tab.width);
+			setMarkerWidth(tab.width);
 
-			// sen initial slider position
+			// set panel position
 			let margin = calcMargin(tabIndex, panels.length, containerWidth);
 			setInnerPanelMarginLeft(margin);
-			return setActive(tabIndex);
+
+			// set active panel (used by resize listener)
+			setActivePanel(tabIndex);
 		},
 		[calcMargin, containerWidth, panels.length, tabsInnerRef]
 	);
 
-	// The panels must get their width from the container ref after load
-	// Marker should grab the width of whatever tab is first on load
+	// Grab initial details about tabs on load
 	React.useEffect(() => {
-		if (panelsOuterRef.current && tabsInnerRef.current && !markerWidth && !containerWidth) {
+		if (
+			panelsOuterRef.current &&
+			tabsInnerRef.current &&
+			!markerWidth &&
+			!containerWidth &&
+			!innerPanelMarginLeft &&
+			!reversedPanels
+		) {
+			// Set the initial width the panels should have
 			const outer = panelsOuterRef.current.getBoundingClientRect();
 			setContainerWidth(outer.width);
-			setMakerWidth(tabsInnerRef.current.children[0].getBoundingClientRect().width);
+
+			// Set initial tab underline width
+			setMarkerWidth(tabsInnerRef.current.children[0].getBoundingClientRect().width);
+
+			// Calculate and set the initial margin to position panels correctly
 			let margin = calcMargin(0, panels.length, outer.width);
-			console.log(margin);
 			setInnerPanelMarginLeft(margin);
+
+			let newPanelOrder = panels.reverse();
+			setReversedPanels(newPanelOrder);
 		}
-	}, [active, markerWidth, panelsOuterRef, panels, tabsInnerRef, containerWidth, calcMargin]);
+	}, [
+		markerWidth,
+		panelsOuterRef,
+		panels,
+		tabsInnerRef,
+		containerWidth,
+		innerPanelMarginLeft,
+		reversedPanels,
+		calcMargin,
+	]);
+
+	// The panels and slider must resize on screen resize
+	const handleScreenResize = () => {
+		const newWidth = panelsOuterRef.current.getBoundingClientRect().width;
+		setContainerWidth(newWidth);
+		return handleTabClick(activePanel);
+	};
+
+	React.useEffect(() => {
+		window.addEventListener('resize', handleScreenResize);
+		return () => window.removeEventListener('resize', handleScreenResize);
+	});
 
 	// Do not render the tabs if it cant render correctly
 	if (tabs.length !== panels.length)
@@ -93,7 +135,9 @@ export function Tabs({ panels = [], tabs = [] }) {
 				<div className={Style.ActiveMarker} />
 			</div>
 			<div className={Style.PanelsOuter} ref={panelsOuterRef}>
-				{!containerWidth ? null : (
+				{!containerWidth || !reversedPanels ? (
+					<Loading size='small' />
+				) : (
 					<div
 						className={Style.PanelsInner}
 						ref={panelsInnerRef}
@@ -101,7 +145,7 @@ export function Tabs({ panels = [], tabs = [] }) {
 							width: `${containerWidth * panels.length}px`,
 							marginLeft: `-${innerPanelMarginLeft}px`,
 						}}>
-						{panels.map((p, i) => (
+						{reversedPanels.map((p, i) => (
 							<Panel key={`${i}__${Math.random()}`}>{p}</Panel>
 						))}
 					</div>

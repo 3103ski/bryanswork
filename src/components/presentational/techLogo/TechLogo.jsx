@@ -31,7 +31,7 @@ import {
 	vscode,
 } from './logos';
 
-export function TechLogo({ width = '100%', logo = 'js', style = {}, ...rest }) {
+export function TechLogo({ width = '100%', logo = 'js', style = {} }) {
 	let src = js;
 	switch (logo) {
 		case 'apollo':
@@ -116,5 +116,5 @@ export function TechLogo({ width = '100%', logo = 'js', style = {}, ...rest }) {
 		default:
 			src = js;
 	}
-	return <img src={src} style={{ width, ...style }} alt='Javascript Logo' />;
+	return <img src={src} style={{ width, ...style }} alt={`${logo}__logo`} />;
 }
