@@ -9,7 +9,7 @@ import { Icon } from '@iconify/react';
 // --> Project Imports
 import { motion_variants_nav } from 'util';
 // import { Button } from 'components';
-import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH } from 'routes';
+import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, NEED_WEBSITE } from 'routes';
 import { BACK_ARROW } from 'icons';
 
 // --> Component Imports
@@ -64,7 +64,7 @@ export default function DesktopNav({ services }) {
 						]}>
 						Explore
 					</DropMenu>
-					<RootLink to={HOME}>Need A Website?</RootLink>
+					<RootLink to={NEED_WEBSITE}>Need A Website?</RootLink>
 				</div>
 				<div className={Style.RightLinks}>
 					<RootLink to={HOME}>Resume</RootLink>

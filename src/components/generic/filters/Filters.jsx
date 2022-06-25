@@ -19,14 +19,9 @@ import Style from './filters.module.scss';
 
 export function Filters({
 	title = 'Filters',
-	filterOptions,
-	filterClick,
 	itemsLabel = '',
-	totalMatches,
-	totalItems,
-	clearFilters,
-	activeFilters,
 	stickyContext = null,
+	fromHook: { activeFilters, filterOptions, totalItems, clearFilters, handleFilterClick, totalMatches },
 }) {
 	const filters = (
 		<div className={Style.FilterSection} id='filterContainer'>
@@ -40,7 +35,7 @@ export function Filters({
 							key={`${filter}__${i}`}
 							activeFilters={activeFilters}
 							label={filter}
-							onClick={filterClick}
+							onClick={handleFilterClick}
 						/>
 					))}
 				</div>
@@ -73,7 +68,7 @@ export function Filters({
  */
 
 function Filter({ label = 'Add Label', onClick, activeFilters = [] }) {
-	function handleFilterClick() {
+	function handlehandleFilterClick() {
 		const top = document.getElementById('result_items');
 		const wrapper = document.getElementById('result_wrapper');
 		const offset =
@@ -92,7 +87,10 @@ function Filter({ label = 'Add Label', onClick, activeFilters = [] }) {
 	}
 
 	return (
-		<div className={Style.Filter} data-active={activeFilters.includes(label) ? 1 : 0} onClick={handleFilterClick}>
+		<div
+			className={Style.Filter}
+			data-active={activeFilters.includes(label) ? 1 : 0}
+			onClick={handlehandleFilterClick}>
 			<p>{label}</p>
 		</div>
 	);

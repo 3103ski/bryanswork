@@ -1,38 +1,51 @@
 // --> React
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // --> Packages
 import { Grid, Ref } from 'semantic-ui-react';
 
 // --> Project Imports
-import { Section, Filters, TechCard, Loading } from 'components';
+import { Section, Filters, TechCard, Loading, TextWrapper, Button } from 'components';
 import { fetchTechnologies } from 'groq';
 import { checkSeshStorageAddIfNeeded } from 'util';
+import { ARROW_RIGHT } from 'icons';
 import { useFilterManager } from 'hooks';
+import { EXPLORE_PROJECTS } from 'routes';
 
 // --> Component Imports
 import Style from './browseTechSection.module.scss';
 
 export default function BrowseTechSection() {
-	// ••••••••••••••••••••••••••••
-	// --> Tech Filters
-	// ••••••••••••••••••••••••••••
-	const { renderItems, filterOptions, activeFilters, totalItems, handleFilterClick, clearFilters } = useFilterManager(
-		{
+	const stickyRef = React.createRef();
+	const { renderItems, filterOptions, activeFilters, totalMatches, totalItems, handleFilterClick, clearFilters } =
+		useFilterManager({
 			rootKey: 'tags',
 			subKey: 'title',
 			queryFunctionSetter: (setter) =>
 				checkSeshStorageAddIfNeeded(`bw_browse_technologies`, setter, fetchTechnologies, null, 'tech'),
-		}
-	);
-	const stickyRef = React.createRef();
+		});
 
 	return !renderItems ? (
 		<Loading size='screen' />
 	) : (
 		<div className={Style.Wrapper}>
 			<Section fluid className={Style.BrowseHeader}>
-				<h1>A bunch of section stuff here</h1>
+				<Section>
+					<h1>Explore My Tech Experience</h1>
+					<TextWrapper>
+						<p>
+							I focus primarily on creating websites and web apps using{' '}
+							<strong>React JS, Node, Express, and MongoDB.</strong> I have a passion for developement and
+							love exploring other tools and tech when I have free time.
+						</p>
+					</TextWrapper>
+					<Link to={EXPLORE_PROJECTS}>
+						<Button icon={ARROW_RIGHT} thin color={'none'}>
+							Check out some work
+						</Button>
+					</Link>
+				</Section>
 			</Section>
 			<Ref innerRef={stickyRef}>
 				<Section fluid className={Style.Inner}>
@@ -40,12 +53,14 @@ export default function BrowseTechSection() {
 						title='Filter Tech By Categories'
 						itemsLabel='technologies'
 						stickyContext={stickyRef}
-						totalMatches={renderItems.length}
-						totalItems={totalItems}
-						filterOptions={filterOptions}
-						activeFilters={activeFilters}
-						clearFilters={clearFilters}
-						filterClick={handleFilterClick}
+						fromHook={{
+							activeFilters,
+							filterOptions,
+							totalItems,
+							totalMatches,
+							clearFilters,
+							handleFilterClick,
+						}}
 					/>
 					<Filters.Results
 						renderItems={renderItems}

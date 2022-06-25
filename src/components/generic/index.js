@@ -8,3 +8,5 @@ export { Filters } from './filters/Filters.jsx';
 export { Loading } from './loading/Loading.jsx';
 export { Detail } from './detail/Detail.jsx';
 export { Tabs } from './tabs/Tabs.jsx';
+
+export { default as TextWrapper } from './textWrapper/TextWrapper.jsx';

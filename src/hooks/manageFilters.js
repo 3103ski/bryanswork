@@ -99,6 +99,7 @@ export default function useFilterManager({ rootKey, subKey = null, queryFunction
 		filterOptions,
 		setList,
 		totalItems: list ? list.length : [],
+		totalMatches: renderItems ? renderItems.length : 0,
 		activeFilters,
 		renderItems,
 		handleFilterClick,

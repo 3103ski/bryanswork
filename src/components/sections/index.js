@@ -18,3 +18,5 @@ export { default as ProjectTabSection } from './project_tabs/ProjectTabsSection.
 // Form Page Sections
 export { default as ContactFormSection } from './contact_form/ContactFormSection.jsx';
 export { default as QuoteFormSection } from './quote_formSection/QuoteFormSection.jsx';
+
+export { default as NeedWebsiteHeader } from './needSite_header/NeedSiteHeader.jsx';

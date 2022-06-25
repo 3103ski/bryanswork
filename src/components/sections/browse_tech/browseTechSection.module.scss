@@ -1,8 +1,12 @@
 @import 'sass';
 
 .BrowseHeader {
-	@include flex-center-center;
+	@include flex-col-center-center;
 	margin-top: map-get($sizes, sizes_nav_dt_short);
 	background-color: map-get($colors, color_primaryPale);
-	height: 350px;
+	min-height: 400px;
+
+	h1 {
+		@include banner-txt-default;
+	}
 }

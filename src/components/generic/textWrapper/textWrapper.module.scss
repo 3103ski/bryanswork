@@ -1,0 +1,29 @@
+@import 'sass';
+
+.Wrapper {
+	h2 {
+		@include sub-default;
+	}
+	padding-bottom: 45px;
+
+	p {
+		@include p-summary;
+		margin-bottom: 20px;
+		letter-spacing: 1px;
+
+		strong {
+			font-weight: 500;
+		}
+	}
+
+	&[data-light='1'] {
+		p,
+		button {
+			color: white;
+		}
+	}
+
+	:last-child {
+		margin-bottom: 0 !important;
+	}
+}

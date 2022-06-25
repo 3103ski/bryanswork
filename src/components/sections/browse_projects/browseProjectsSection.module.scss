@@ -6,8 +6,9 @@
 
 	.BrowseHeader {
 		@include flex-center-center;
-		height: 400px;
+		padding: 40px 0;
 		background-color: map-get($colors, color_secondary);
+
 		h1 {
 			color: white;
 			@include banner-txt-default;
