@@ -2,7 +2,7 @@
 import React from 'react';
 
 // --> Project Imports
-import { QuoteFormSection } from 'components';
+import { ContactFormSection } from 'components';
 
 // --> Component Imports
 import ViewWrapper from './ViewWrapper';
@@ -10,7 +10,7 @@ import ViewWrapper from './ViewWrapper';
 export default function RequestQuote() {
 	return (
 		<ViewWrapper>
-			<QuoteFormSection />
+			<ContactFormSection />
 		</ViewWrapper>
 	);
 }

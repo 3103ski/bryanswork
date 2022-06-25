@@ -69,6 +69,7 @@ export default function ProjectTabsSection({ project }) {
 										<Image
 											className={Style.MockupThumbnail}
 											rounded
+											bordered
 											fluid
 											src={image}
 											onClick={() => handleThumbnailClick(i)}

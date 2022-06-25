@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export default function useFilterManager({ rootKey, subKey = null }) {
+export default function useFilterManager({ rootKey, subKey = null, queryFunctionSetter }) {
 	const [list, setList] = React.useState(null);
 
 	const [strictFilters, toggleStrictFilters] = React.useState(false);
@@ -86,12 +86,19 @@ export default function useFilterManager({ rootKey, subKey = null }) {
 		}
 	});
 
+	React.useEffect(() => {
+		if (queryFunctionSetter && !list) {
+			queryFunctionSetter(setList);
+		}
+	}, [list, queryFunctionSetter]);
+
 	return {
 		strictFilters,
 		clearFilters,
 		handleStrictToggle,
 		filterOptions,
 		setList,
+		totalItems: list ? list.length : [],
 		activeFilters,
 		renderItems,
 		handleFilterClick,

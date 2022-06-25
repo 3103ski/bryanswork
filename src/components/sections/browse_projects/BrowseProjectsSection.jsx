@@ -15,29 +15,18 @@ import Style from './browseProjectsSection.module.scss';
 
 export default function BrowseProjectsSection() {
 	//•••••••••••••••••••••
-	// --> Project Data
-	//•••••••••••••••••••••
-	const [projects, setProjects] = React.useState(null);
-
-	React.useEffect(() => {
-		checkSeshStorageAddIfNeeded(`bw__projects_browse`, setProjects, fetchProjects, null, 'projects');
-	}, []);
-
-	//•••••••••••••••••••••
 	// --> Project Filters
 	//•••••••••••••••••••••
-	const { setList, handleFilterClick, clearFilters, filterOptions, activeFilters, renderItems } = useFilterManager({
-		rootKey: 'tech',
-		subKey: 'title',
-	});
+	const { totalItems, handleFilterClick, clearFilters, filterOptions, activeFilters, renderItems } = useFilterManager(
+		{
+			rootKey: 'tech',
+			subKey: 'title',
+			queryFunctionSetter: (setter) =>
+				checkSeshStorageAddIfNeeded(`bw__projects_browse`, setter, fetchProjects, null, 'projects'),
+		}
+	);
 
 	const stickyRef = React.createRef();
-
-	React.useEffect(() => {
-		if (!filterOptions && projects) {
-			setList(projects);
-		}
-	});
 
 	return renderItems === null ? (
 		<Loading size='screen' />
@@ -53,7 +42,7 @@ export default function BrowseProjectsSection() {
 						itemsLabel='projects'
 						stickyContext={stickyRef}
 						totalMatches={renderItems.length}
-						totalItems={projects.length}
+						totalItems={totalItems}
 						filterOptions={filterOptions}
 						activeFilters={activeFilters}
 						clearFilters={clearFilters}

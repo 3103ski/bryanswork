@@ -1,0 +1,39 @@
+@import 'sass';
+
+.TextInput,
+.TextArea,
+.FileInput,
+.Dropdown {
+	&,
+	input,
+	textarea {
+		border-radius: map-get($borders, borders_small_radius) !important;
+	}
+	margin-bottom: 10px !important;
+	&:focus {
+		border-color: map-get($colors, color_primary) !important;
+	}
+}
+
+.LabelLeft {
+	border-top-left-radius: map-get($borders, borders_small_radius) !important;
+	border-bottom-left-radius: map-get($borders, borders_small_radius) !important;
+}
+
+.LabelRight {
+	border-top-right-radius: map-get($borders, borders_small_radius) !important;
+	border-bottom-right-radius: map-get($borders, borders_small_radius) !important;
+}
+
+.FormTitle {
+	color: map-get($colors, color_primary);
+	font-size: 18px;
+
+	&[data-size='med'] {
+		font-size: 22px;
+	}
+
+	&[data-size='large'] {
+		font-size: 26px;
+	}
+}

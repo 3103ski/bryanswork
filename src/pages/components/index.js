@@ -5,3 +5,4 @@ export { default as HomePage } from './Page_Home.jsx';
 export { default as ProjectTemplatePage } from './Template_Project.jsx';
 export { default as RequestQuotePage } from './Page_RequestQuote.jsx';
 export { default as WhatToExpectPage } from './Page_WhatToExpect.jsx';
+export { default as ContactFormPage } from './Page_Contact.jsx';

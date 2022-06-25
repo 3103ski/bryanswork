@@ -1,0 +1,6 @@
+@import 'sass';
+
+.Wrapper {
+	@include flex-center-center;
+	min-height: 80vh;
+}

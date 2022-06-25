@@ -1,0 +1,11 @@
+@import 'sass';
+
+.Wrapper {
+	@include flex-center-center;
+	width: 100%;
+	min-height: 80vh;
+
+	.Form {
+		width: 100%;
+	}
+}

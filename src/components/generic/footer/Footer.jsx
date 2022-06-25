@@ -7,7 +7,7 @@ import { Grid } from 'semantic-ui-react';
 
 // --> Project Imports
 import { Section, Divider, Button } from 'components';
-import { EXPLORE_PROJECTS, EXPLORE_TECH, REQUEST_QUOTE, WHAT_TO_EXPECT } from 'routes';
+import { EXPLORE_PROJECTS, EXPLORE_TECH, REQUEST_QUOTE, WHAT_TO_EXPECT, CONTACT } from 'routes';
 
 // --> Component Imports
 import Style from './footer.module.scss';
@@ -41,7 +41,9 @@ export function Footer() {
 											</Link>
 										</Grid.Column>
 										<Grid.Column>
-											<p>Contact</p>
+											<Link to={CONTACT}>
+												<p>Contact</p>
+											</Link>
 										</Grid.Column>
 										<Grid.Column>
 											<p>FAQs</p>

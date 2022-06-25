@@ -7,8 +7,15 @@ import { AnimatePresence } from 'framer-motion';
 
 // --> Project Imports
 import { scrollToTopOf } from 'util';
-import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, PROJECT_PAGE } from 'routes';
-import { HomePage, ExploreProjectsPage, ExploreTechPage, ProjectTemplatePage } from './components';
+import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, PROJECT_PAGE, REQUEST_QUOTE, CONTACT } from 'routes';
+import {
+	HomePage,
+	ExploreProjectsPage,
+	ExploreTechPage,
+	ProjectTemplatePage,
+	RequestQuotePage,
+	ContactFormPage,
+} from './components';
 
 export default function AnimatedRoutes() {
 	const location = useLocation();
@@ -21,6 +28,8 @@ export default function AnimatedRoutes() {
 				<Route exact path={EXPLORE_PROJECTS} element={<ExploreProjectsPage />} />
 				<Route exact path={EXPLORE_TECH} element={<ExploreTechPage />} />
 				<Route exact path={`${PROJECT_PAGE}/:slug`} element={<ProjectTemplatePage />} />
+				<Route exact path={REQUEST_QUOTE} element={<RequestQuotePage />} />
+				<Route exact path={CONTACT} element={<ContactFormPage />} />
 			</Routes>
 		</AnimatePresence>
 	);

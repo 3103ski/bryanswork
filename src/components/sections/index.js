@@ -14,3 +14,7 @@ export { default as BrowseProjectSection } from './browse_projects/BrowseProject
 // Project Template Page
 export { default as ProjectTemplateHeader } from './project_header/ProjectHeader.jsx';
 export { default as ProjectTabSection } from './project_tabs/ProjectTabsSection.jsx';
+
+// Form Page Sections
+export { default as ContactFormSection } from './contact_form/ContactFormSection.jsx';
+export { default as QuoteFormSection } from './quote_formSection/QuoteFormSection.jsx';

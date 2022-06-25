@@ -14,29 +14,18 @@ import { useFilterManager } from 'hooks';
 import Style from './browseTechSection.module.scss';
 
 export default function BrowseTechSection() {
-	// •••••••••••••••••••••
-	// --> Tech Data
-	// •••••••••••••••••••••
-	const [tech, setTech] = React.useState(null);
-
-	React.useEffect(() => {
-		checkSeshStorageAddIfNeeded(`bw_browse_technologies`, setTech, fetchTechnologies, null, 'tech');
-	}, []);
-
 	// ••••••••••••••••••••••••••••
 	// --> Tech Filters
 	// ••••••••••••••••••••••••••••
-	const { setList, handleFilterClick, clearFilters, filterOptions, activeFilters, renderItems } = useFilterManager({
-		rootKey: 'tags',
-		subKey: 'title',
-	});
-	const stickyRef = React.createRef();
-
-	React.useEffect(() => {
-		if (!filterOptions && tech) {
-			setList(tech);
+	const { renderItems, filterOptions, activeFilters, totalItems, handleFilterClick, clearFilters } = useFilterManager(
+		{
+			rootKey: 'tags',
+			subKey: 'title',
+			queryFunctionSetter: (setter) =>
+				checkSeshStorageAddIfNeeded(`bw_browse_technologies`, setter, fetchTechnologies, null, 'tech'),
 		}
-	});
+	);
+	const stickyRef = React.createRef();
 
 	return !renderItems ? (
 		<Loading size='screen' />
@@ -52,7 +41,7 @@ export default function BrowseTechSection() {
 						itemsLabel='technologies'
 						stickyContext={stickyRef}
 						totalMatches={renderItems.length}
-						totalItems={tech.length}
+						totalItems={totalItems}
 						filterOptions={filterOptions}
 						activeFilters={activeFilters}
 						clearFilters={clearFilters}

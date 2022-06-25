@@ -4,8 +4,6 @@ https://icon-sets.iconify.design
 */
 
 // -->  Graphic Icons
-export const LEAF = `el:leaf`;
-export const MOWER = `mdi:mower-bag`;
 export const PHONE = `carbon:phone-voice-filled`;
 export const MONEY = `bxs:dollar-circle`;
 
