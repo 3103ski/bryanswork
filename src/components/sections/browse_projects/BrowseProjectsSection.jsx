@@ -18,6 +18,7 @@ import Style from './browseProjectsSection.module.scss';
 
 export default function BrowseProjectsSection() {
 	const stickyRef = React.createRef();
+
 	const { renderItems, filterOptions, activeFilters, totalMatches, totalItems, handleFilterClick, clearFilters } =
 		useFilterManager({
 			rootKey: 'tech',

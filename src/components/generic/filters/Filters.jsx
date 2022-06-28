@@ -26,8 +26,8 @@ export function Filters({
 	const filters = (
 		<div className={Style.FilterSection} id='filterContainer'>
 			<Section>
-				<div className={Style.Top}>
-					<p className={Style.Label}>{title}</p>
+				<div className={`${Style.Top} someClass`}>
+					<p className={`${Style.Label} `}>{title}</p>
 				</div>
 				<div className={Style.FilterWrapper}>
 					{filterOptions.map((filter, i) => (
@@ -71,6 +71,7 @@ function Filter({ label = 'Add Label', onClick, activeFilters = [] }) {
 	function handlehandleFilterClick() {
 		const top = document.getElementById('result_items');
 		const wrapper = document.getElementById('result_wrapper');
+
 		const offset =
 			document.getElementById('filterContainer').getBoundingClientRect().height +
 			intFromPx(Style.sizes_nav_height);

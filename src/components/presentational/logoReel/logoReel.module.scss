@@ -19,6 +19,9 @@
 		overflow: hidden;
 		z-index: 3;
 
+		border: 1px solid map-get($colors, color_defaultBlack);
+		border-radius: map-get($borders, borders_small_radius);
+
 		.IconInner {
 			@include flex-center;
 			flex-wrap: nowrap;
@@ -28,8 +31,6 @@
 				animation: roll var(--animation-duration) linear infinite;
 			}
 		}
-		border: 1px solid map-get($colors, color_defaultBlack);
-		border-radius: map-get($borders, borders_small_radius);
 	}
 
 	.ThinBar {

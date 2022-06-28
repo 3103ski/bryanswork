@@ -13,7 +13,7 @@ import {
 	ExploreProjectsPage,
 	ExploreTechPage,
 	ProjectTemplatePage,
-	RequestQuotePage,
+	ProjectSurveyPage,
 	ContactFormPage,
 	NeedWebsitePage,
 } from './components';
@@ -29,7 +29,7 @@ export default function AnimatedRoutes() {
 				<Route exact path={EXPLORE_PROJECTS} element={<ExploreProjectsPage />} />
 				<Route exact path={EXPLORE_TECH} element={<ExploreTechPage />} />
 				<Route exact path={`${PROJECT_PAGE}/:slug`} element={<ProjectTemplatePage />} />
-				<Route exact path={REQUEST_QUOTE} element={<RequestQuotePage />} />
+				<Route exact path={REQUEST_QUOTE} element={<ProjectSurveyPage />} />
 				<Route exact path={CONTACT} element={<ContactFormPage />} />
 				<Route exact path={NEED_WEBSITE} element={<NeedWebsitePage />} />
 			</Routes>

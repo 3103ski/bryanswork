@@ -45,17 +45,9 @@ export function LogoReel() {
 			<Section>
 				<div className={Style.IconWrapper}>
 					<div className={Style.IconInner} id='icon-inner'>
-						{tech.map((tech, i) => (
+						{[...tech, ...tech].map((tech, i) => (
 							<TechLogo
 								key={`${tech}__${i}`}
-								width={`${logoWidth}px`}
-								logo={tech}
-								style={{ marginRight: `${logoMargin}px` }}
-							/>
-						))}
-						{tech.map((tech, i) => (
-							<TechLogo
-								key={`${tech}_2_${i}`}
 								width={`${logoWidth}px`}
 								logo={tech}
 								style={{ marginRight: `${logoMargin}px` }}

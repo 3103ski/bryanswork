@@ -1,0 +1,39 @@
+@import 'sass';
+
+.MultiPageForm {
+	@include remove-scrollbar;
+	width: 100%;
+	padding: 20px;
+	height: calc(100vh - #{map-get($sizes, sizes_nav_height)});
+	overflow-y: scroll;
+
+	.FormOuter {
+		padding-top: calc(map-get($sizes, sizes_nav_height) + 80px);
+
+		height: 100%;
+		width: 100%;
+		overflow-x: hidden;
+		overflow-y: visible;
+
+		.FormInner {
+			@include flex-start;
+
+			height: 100%;
+			transition: 0.15s;
+			transition-timing-function: ease-in-out;
+			flex-wrap: nowrap;
+		}
+	}
+
+	.ButtonWrapper {
+		width: 100%;
+		padding: 20px 0;
+		display: flex;
+
+		button {
+			&:last-of-type {
+				margin-left: auto !important;
+			}
+		}
+	}
+}

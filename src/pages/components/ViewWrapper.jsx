@@ -5,12 +5,12 @@ import React from 'react';
 import { Footer } from 'components';
 import { MotionViewWrapper } from 'util';
 
-export default function ViewWrapper({ children }) {
+export default function ViewWrapper({ noFooter = null, children }) {
 	return (
 		// DEV NOTE --> View animations can be adjusted in 'src/util/framerMotion.js' file.
 		<MotionViewWrapper>
 			{children}
-			<Footer />
+			{noFooter ? null : <Footer />}
 		</MotionViewWrapper>
 	);
 }

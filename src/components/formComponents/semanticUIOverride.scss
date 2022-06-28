@@ -5,6 +5,7 @@
 	padding: 10px !important;
 	flex-wrap: wrap;
 }
+
 .ui.selection.dropdown .menu {
 	@include remove-scrollbar;
 	border-bottom-left-radius: map-get($borders, borders_small_radius) !important;
@@ -17,6 +18,7 @@
 	border: solid 1px map-get($colors, color_primary) !important;
 	box-shadow: none !important;
 	white-space: nowrap !important;
+	background-color: white !important;
 
 	&,
 	i {
@@ -25,9 +27,9 @@
 	i {
 		margin-left: 15px !important;
 	}
-	background-color: white !important;
 }
 .field > .selection.dropdown {
 	@include flex-center;
 	padding: 10px 20px !important;
+	margin-bottom: 10px;
 }
