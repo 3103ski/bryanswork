@@ -13,14 +13,26 @@ import Style from './projectSurvey.module.scss';
 import { formData } from './formPanelsData.js';
 
 export default function FormGenerator() {
+	// Track current location in the form
 	const [activePanel, setActivePanel] = React.useState(0);
+
+	// Used to calc width for panes and margin calcs
 	const [formWidth, setFormWidth] = React.useState(null);
 	const formRef = React.createRef();
 	const sidePad = 25;
 
+	/**
+	 * TODO: Figure out tab button issue
+	 *
+	 * A user on the form can click tab button all the way to the end of the form and try to submit it.
+	 * This even sometimes breaks the UI.
+	 */
+
 	// --> Extract form data using utility functions from hook
 	const { extractInitialFormData } = useFormUtility();
 	const { validate, initialState } = extractInitialFormData(formData.panes);
+
+	console.log({ initialState, validate });
 
 	// --> Setup the hook for the entire form (single or multi pane)
 	const { onSubmit, formIsValid, setValues, values, updateValidationIgnoreList } = useForm(
@@ -44,11 +56,14 @@ export default function FormGenerator() {
 	async function handleOnSubmit(finalData) {
 		const payload = { ...values, ...finalData };
 		let contentSet = await handlePanelButtonOnClick(null, finalData);
-
 		let errors = await formIsValid(payload);
 
 		if (Object.keys(errors).length === 0 && !contentSet) {
+			for (let key in payload) {
+				if (payload[key] === '') delete payload[key];
+			}
 			console.log({ payload });
+
 			// Fire submit function to API
 		}
 	}
@@ -56,6 +71,7 @@ export default function FormGenerator() {
 	//______________________________________________________________________
 	// ==> Needed to render correct panels but offset transition margin when switching
 	//----------------------------------------------------------------------
+	// ==> used to help component offset correctly and tells JSX code in return which panels should not be considered.
 	const [removedPanes, setRemovedPanes] = React.useState([]);
 	const managePaneRemoval = async (pane, operation) => {
 		switch (operation) {
@@ -71,24 +87,40 @@ export default function FormGenerator() {
 		}
 	};
 
+	// ==> Will decide if a conditional panal should be shown (panel with `dependsOnPreviousAnswer` set to true)
 	function showPanel(panel) {
-		if (panel.dependsOnPreviousAnswer !== undefined) {
+		if (panel.dependsOnPreviousAnswer !== undefined && panel.dependsOnPreviousAnswer) {
+			// Grab the value the pane depends on
 			let focusValue = values[panel.looksAt];
+
+			// Check if the value has an answer
 			if (focusValue !== '') {
+				// These are answers that the form data have provided pane data for, if we have any answer that is not on this list, we will pass that value to validation for payload, but there will be no panel rendered.
 				let answersToShowFor = panel.paneOptions.map((p) => p.looksFor);
+
+				// Does the answers list (our pane inventory) include something for the value we have?
 				if (answersToShowFor.includes(focusValue)) {
-					if (removedPanes.includes(panel.title)) {
-						managePaneRemoval(panel.title, 'remove');
+					// We found that it does, is the pane on removal list from previous answers?
+					if (removedPanes.includes(panel.removalLabel)) {
+						// If it was, remove it.
+						managePaneRemoval(panel.removalLabel, 'remove');
 					}
+					// With the removedPanes array confirmed up to date, we should now render this pane.
 					return true;
 				} else {
-					if (!removedPanes.includes(panel.title)) {
-						managePaneRemoval(panel.title, 'add');
+					// The answer us NOT something we have a pane for
+					if (!removedPanes.includes(panel.removalLabel)) {
+						// make sure we add the panel title to
+						managePaneRemoval(panel.removalLabel, 'add');
 					}
 					return false;
 				}
+			} else {
+				// The pane should not be rendered yet because the focus value has no answer yet
+				return false;
 			}
 		}
+		// Does not depend on previous answer, bring the pane.
 		return true;
 	}
 
@@ -106,6 +138,8 @@ export default function FormGenerator() {
 
 	React.useEffect(() => {
 		calcWidth();
+		window.addEventListener('resize', calcWidth);
+		return () => window.removeEventListener('resize', calcWidth);
 	}, [calcWidth]);
 
 	return (

@@ -1,4 +1,8 @@
-const optionArray = (arr) => [{ key: 0, text: 'Select One', value: '' }, ...arr].map((o, i) => ({ ...o, key: i + 1 }));
+const optionArray = (arr, text = null) =>
+	[{ key: 0, text: text ? `---> ${text} <---` : 'Select One', value: '' }, ...arr].map((o, i) => ({
+		...o,
+		key: i + 1,
+	}));
 
 const yesNo = [
 	{
@@ -15,7 +19,7 @@ export const yesNoQuestion = (question) => {
 	return {
 		placeholder: question,
 		type: 'dropdown',
-		options: optionArray(yesNo),
+		options: optionArray(yesNo, question),
 		initial: '',
 		validate: {
 			min: 1,
@@ -25,7 +29,7 @@ export const yesNoQuestion = (question) => {
 };
 
 export const simpleDropMenu = ({
-	options = [],
+	options,
 	placeholder = 'select an option',
 	errorMsg = 'please select one',
 	validate = true,
@@ -42,9 +46,10 @@ export const simpleDropMenu = ({
 			let value = option.toLocaleLowerCase().split(' ').join('');
 			return {
 				text: option,
-				value,
+				value: value.length > 10 ? option : value,
 			};
 		}
+
 		if (typeof option === 'object') return option;
 		return null;
 	});
@@ -54,7 +59,7 @@ export const simpleDropMenu = ({
 		type: 'dropdown',
 		initial,
 		validate: validate === false ? null : customValidation ? customValidation : defaultValidation,
-		options: optionArray(configuredOptions),
+		options: optionArray(configuredOptions, placeholder),
 	};
 };
 

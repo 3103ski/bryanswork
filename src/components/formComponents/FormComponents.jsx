@@ -73,8 +73,8 @@ export function Dropdown({ options, optionsFilterList = null, defaultValue, ...r
 			fluid
 			selection
 			defaultValue={defaultValue}
-			{...rest}
 			options={filterdOptions ? filterdOptions : options}
+			{...rest}
 		/>
 	);
 }

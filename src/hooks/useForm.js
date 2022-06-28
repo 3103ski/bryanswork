@@ -1,6 +1,6 @@
 import React from 'react';
 import { updateObj } from '../util/';
-import { TextInput, Dropdown } from 'components';
+import { TextInput, Dropdown, TextWrapper } from 'components';
 
 export function useForm(callback, initialState = {}, options) {
 	// --> Incoming Hook Data
@@ -174,22 +174,37 @@ export function useForm(callback, initialState = {}, options) {
 
 	// --> RENDERING INPUTS --> Provide input data model to render form components for a single pane
 	const renderInputs = React.useCallback(
-		(inputsData, currData) => {
-			let inputs = [];
-			if (inputsData.dependsOnPreviousAnswer !== undefined) {
+		(paneData, currData) => {
+			let { dependsOnPreviousAnswer, paneOptions: panes, display, looksAt, inputs } = paneData;
+			let [renderInputs, text] = [[], null];
+
+			if (dependsOnPreviousAnswer !== undefined) {
 				// Check the proper inputs on prev value here
-				inputsData.paneOptions.map((option) => {
-					if (option.looksFor === currData[inputsData.looksAt]) {
-						inputs = Object.entries(option.inputs);
+				panes.map((option) => {
+					if (option.looksFor === currData[looksAt]) {
+						renderInputs = Object.entries(option.inputs);
+						display = option.display;
 					}
 					return null;
 				});
 			} else {
-				inputs = Object.entries(inputsData);
+				renderInputs = Object.entries(inputs);
 			}
+
+			if (display !== undefined) {
+				let { title, subtext } = display;
+				text = (
+					<TextWrapper>
+						{title && <h1>{title}</h1>}
+						{subtext && <p>{subtext}</p>}
+					</TextWrapper>
+				);
+			}
+
 			return (
 				<>
-					{inputs.map((input, i) => {
+					{text}
+					{renderInputs.map((input, i) => {
 						let [key, val] = [input[0], input[1]];
 						switch (val.type) {
 							case 'dropdown':
@@ -252,7 +267,7 @@ export function useFormUtility() {
 	function getInputs(pane, currValues) {
 		let inputs = {};
 		if (pane.dependsOnPreviousAnswer === undefined) {
-			inputs = { ...pane };
+			inputs = { ...pane.inputs };
 		} else {
 			pane.paneOptions.map((option) => {
 				if (currValues !== undefined && currValues[pane.looksAt] !== '') {
