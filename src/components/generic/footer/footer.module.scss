@@ -47,4 +47,10 @@
 		height: 4px;
 		background-color: map-get($colors, color_defaultBlack);
 	}
+
+	@media #{map-get($media, mobile)} {
+		.ThinBar {
+			display: none;
+		}
+	}
 }

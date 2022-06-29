@@ -16,12 +16,16 @@
 		box-sizing: border-box;
 
 		.ProfilePic {
-			@include shadow-default;
-
-			width: 100%;
-			position: inherit;
-			border-radius: 100%;
-			max-width: 220px !important;
+			img {
+				@include shadow-default;
+				width: 100%;
+				position: inherit;
+				border-radius: 100%;
+				max-width: 220px !important;
+				img {
+					margin: 0 auto !important;
+				}
+			}
 		}
 
 		.Text {
@@ -50,8 +54,46 @@
 		background-color: map-get($colors, color_primary);
 		height: 40vh;
 		padding: 20px 15px;
+
 		.Buttons {
 			@include flex-center-center;
+		}
+	}
+
+	// ================
+	// >> TABLET
+	// ================
+	@media #{map-get($media, tablet_max)} {
+		.Top {
+			.ProfilePic {
+				@include flex-center-center;
+				img {
+					max-width: 180px !important;
+				}
+			}
+
+			.Text {
+				text-align: center;
+				p {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	// ================
+	// >> MOBILE
+	// ================
+	@media #{map-get($media, mobile)} {
+		.Top {
+			.ProfilePic {
+				margin-top: 50px !important;
+			}
+		}
+		.Bottom {
+			.Buttons {
+				@include flex-col-center;
+			}
 		}
 	}
 }

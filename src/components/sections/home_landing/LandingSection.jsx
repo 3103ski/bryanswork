@@ -21,8 +21,8 @@ export default function HomeLandingSection() {
 				<Section>
 					<Grid>
 						<Grid.Row>
-							<Grid.Column computer={4} mobile={16}>
-								<img src={profile_pic} alt='bryan pic' className={Style.ProfilePic} />
+							<Grid.Column computer={4} mobile={16} className={Style.ProfilePic}>
+								<img src={profile_pic} alt='bryan pic' />
 							</Grid.Column>
 							<Grid.Column computer={12} mobile={16}>
 								<div className={Style.Text}>

@@ -8,7 +8,7 @@ import { TechLogo, Section } from 'components';
 import Style from './logoReel.module.scss';
 
 export function LogoReel() {
-	let [logoWidth, logoMargin] = [70, 40];
+	let [logoWidth, logoMargin] = [67, 40];
 	let tech = [
 		'html',
 		'sass',
@@ -42,7 +42,7 @@ export function LogoReel() {
 				'--double-logo-width': `${tech.length * (logoWidth + logoMargin) * 2}px`,
 				'--animation-duration': `${tech.length * 1.5}s`,
 			}}>
-			<Section>
+			<Section className={Style.Container}>
 				<div className={Style.IconWrapper}>
 					<div className={Style.IconInner} id='icon-inner'>
 						{[...tech, ...tech].map((tech, i) => (
