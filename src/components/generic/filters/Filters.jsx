@@ -3,10 +3,12 @@ import React from 'react';
 
 // --> Packages
 import { Sticky, Grid } from 'semantic-ui-react';
+import { Icon } from '@iconify/react';
 
 // --> Project Imports
 import { intFromPx } from 'util';
 import { Section } from 'components';
+import { FILTERS_NO_FILL, CLOSE_X } from 'icons';
 
 // --> Component Imports
 import Style from './filters.module.scss';
@@ -23,32 +25,76 @@ export function Filters({
 	stickyContext = null,
 	fromHook: { activeFilters, filterOptions, totalItems, clearFilters, handleFilterClick, totalMatches },
 }) {
+	const [mobileFiltersVisible, toggleMobileFiltersVisible] = React.useState(false);
 	const filters = (
-		<div className={Style.FilterSection} id='filterContainer'>
-			<Section>
-				<div className={`${Style.Top}`}>
-					<p className={`${Style.Label} `}>{title}</p>
+		<>
+			<div className={Style.FilterSection} id='filterContainer'>
+				<Section>
+					<div className={`${Style.Top}`}>
+						<p className={`${Style.Label} `}>{title}</p>
+					</div>
+					<div className={Style.FilterWrapper}>
+						{filterOptions.map((filter, i) => (
+							<Filter
+								key={`${filter}__${i}`}
+								activeFilters={activeFilters}
+								label={filter}
+								onClick={handleFilterClick}
+							/>
+						))}
+					</div>
+					<p className={Style.ShowingText}>
+						Showing {totalMatches} of {totalItems} {itemsLabel}{' '}
+						{totalMatches < totalItems ? (
+							<span className={Style.ClearBtn} onClick={clearFilters}>
+								clear filters
+							</span>
+						) : null}
+					</p>
+				</Section>
+			</div>
+			<div
+				className={Style.Mobile_FilterSection}
+				data-filters-visible={mobileFiltersVisible ? 1 : 0}
+				id='filterContainer'>
+				<div className={Style.CloseBackdrop} onClick={() => toggleMobileFiltersVisible(false)} />
+				<div className={Style.Mobile_FilterWrapper}>
+					<div className={Style.CloseWrapper} onClick={() => toggleMobileFiltersVisible(false)}>
+						<Icon icon={CLOSE_X} />
+					</div>
+					<div className={`${Style.Top}`}>
+						<p className={`${Style.Label} `}>{title}</p>
+					</div>
+					<div className={Style.Inner}>
+						{filterOptions.map((filter, i) => (
+							<Filter
+								key={`${filter}__${i}`}
+								activeFilters={activeFilters}
+								label={filter}
+								callback={() => toggleMobileFiltersVisible(false)}
+								onClick={handleFilterClick}
+							/>
+						))}
+					</div>
 				</div>
-				<div className={Style.FilterWrapper}>
-					{filterOptions.map((filter, i) => (
-						<Filter
-							key={`${filter}__${i}`}
-							activeFilters={activeFilters}
-							label={filter}
-							onClick={handleFilterClick}
-						/>
-					))}
+
+				<div className={Style.DisplayPanel}>
+					<p className={Style.ShowingText}>
+						Showing {totalMatches} of {totalItems} {itemsLabel}{' '}
+						{totalMatches < totalItems ? (
+							<span className={Style.ClearBtn} onClick={clearFilters}>
+								clear filters
+							</span>
+						) : null}
+					</p>
+					<div
+						className={Style.IconWrapper}
+						onClick={() => toggleMobileFiltersVisible(!mobileFiltersVisible)}>
+						<Icon icon={FILTERS_NO_FILL} />
+					</div>
 				</div>
-				<p className={Style.ShowingText}>
-					Showing {totalMatches} of {totalItems} {itemsLabel}{' '}
-					{totalMatches < totalItems ? (
-						<span className={Style.ClearBtn} onClick={clearFilters}>
-							clear filters
-						</span>
-					) : null}
-				</p>
-			</Section>
-		</div>
+			</div>
+		</>
 	);
 
 	const [offset, setOffset] = React.useState(null);
@@ -86,7 +132,7 @@ export function Filters({
  * @returns a functional filter option
  */
 
-function Filter({ label = 'Add Label', onClick, activeFilters = [] }) {
+function Filter({ label = 'Add Label', onClick, callback, activeFilters = [] }) {
 	function handlehandleFilterClick() {
 		const top = document.getElementById('result_items');
 		const wrapper = document.getElementById('result_wrapper');
@@ -102,7 +148,7 @@ function Filter({ label = 'Add Label', onClick, activeFilters = [] }) {
 				top: top.getBoundingClientRect().top - document.body.getBoundingClientRect().top - offset - 20,
 			});
 		}
-
+		if (callback) callback();
 		return onClick(label);
 	}
 

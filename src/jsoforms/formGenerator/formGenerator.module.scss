@@ -3,6 +3,7 @@
 .MultiPageForm {
 	@include remove-scrollbar;
 	width: 100%;
+	min-width: 330px;
 	padding: 20px;
 	height: calc(100vh - #{map-get($sizes, sizes_nav_height)});
 	overflow-y: scroll;
@@ -34,6 +35,13 @@
 			&:last-of-type {
 				margin-left: auto !important;
 			}
+		}
+	}
+
+	@media #{map-get($media, mobile)} {
+		padding: 0;
+		.FormOuter {
+			padding-top: 60px;
 		}
 	}
 }

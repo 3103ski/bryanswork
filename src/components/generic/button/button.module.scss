@@ -97,6 +97,7 @@
 
 	&[data-color='secondary'] {
 		background-color: map-get($colors, color_secondary) !important;
+		color: white;
 		&:hover {
 			background-color: map-get($colors, color_secondaryTransp) !important;
 		}
@@ -121,7 +122,7 @@
 	// BUTTON TEXT COLOR
 	&[data-color='primary'],
 	&[data-color='primaryTransp'],
-	&[data-color='secondary'],
+	// &[data-color='secondary'],
 	&[data-color='secondaryTransp'] {
 		color: map-get($colors, color_themeBlack) !important;
 	}

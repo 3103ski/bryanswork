@@ -22,7 +22,7 @@
 	animation-timing-function: ease-in-out;
 
 	.Header {
-		background-color: map-get($colors, color_primary) !important;
+		background-color: map-get($colors, color_secondary) !important;
 		border-top-left-radius: calc(#{map-get($borders, borders_small_radius)} - 4px) !important;
 		border-top-right-radius: calc(#{map-get($borders, borders_small_radius)} - 4px) !important;
 
@@ -37,5 +37,9 @@
 	.ContentWrapper {
 		border-bottom-left-radius: map-get($borders, borders_small_radius) !important;
 		border-bottom-right-radius: map-get($borders, borders_small_radius) !important;
+
+		.Inner {
+			padding: 15px 25px 30px 25px;
+		}
 	}
 }

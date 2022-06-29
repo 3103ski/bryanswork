@@ -138,6 +138,7 @@ export default function FormGenerator({ formObject, callback }) {
 		window.addEventListener('resize', calcWidth);
 		return () => window.removeEventListener('resize', calcWidth);
 	}, [calcWidth]);
+	console.log(formWidth);
 
 	return (
 		<Form onSubmit={onSubmit} className={Style.MultiPageForm}>
@@ -148,7 +149,7 @@ export default function FormGenerator({ formObject, callback }) {
 					<div
 						className={Style.FormInner}
 						style={{
-							width: `${formWidth * formObject.panes.length}px`,
+							width: `${formWidth * (formObject.panes.length + 1)}px`,
 							marginLeft: `-${activePanel * formWidth}px`,
 						}}>
 						{formObject.panes
