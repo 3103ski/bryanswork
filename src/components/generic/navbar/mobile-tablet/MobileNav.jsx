@@ -3,7 +3,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 
 // --> Project Imports
-import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, CONTACT, REQUEST_QUOTE, NEED_WEBSITE } from 'routes';
+import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, REQUEST_QUOTE, NEED_WEBSITE } from 'routes';
 import { Button, Modal } from 'components';
 // import { PHONE, LEAF } from 'icons';
 
