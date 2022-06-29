@@ -42,12 +42,11 @@ export default function FormGenerator({ formObject, callback }) {
 	// --> A function that will accept the final (or only) pane's data, merge it with all collected so far, and pass it into api callback
 	async function handleOnSubmit(finalData) {
 		const payload = { ...values, ...finalData };
-		let contentSet = await handleFormNavigation(null, finalData);
-		// await setValues(payload);
-		await updateValidationIgnoreList();
-		let errors = await formIsValid(payload);
-		console.log({ errors });
-		if (Object.keys(errors).length === 0 && !contentSet) {
+		await setValues(payload);
+
+		const { errors } = await formIsValid(payload);
+
+		if (Object.keys(errors).length === 0) {
 			for (let key in payload) {
 				if (payload[key] === '') delete payload[key];
 			}

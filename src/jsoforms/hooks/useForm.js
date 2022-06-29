@@ -14,18 +14,19 @@ export default function useForm(callback, initialState = {}, options) {
 
 	// --> Without this function, being executed as tabs change, you will not be able to submit because the validation options for the unused panels will stop the submission due to their state
 	const [validateIgnoreList, setValidateIgnoreList] = React.useState([]);
-	const updateValidationIgnoreList = React.useCallback(() => {
-		let newPasslist = [];
-		formObject.panes.map((panel) =>
+	const updateValidationIgnoreList = React.useCallback(async () => {
+		let ignoreList = [];
+		await formObject.panes.map((panel) =>
 			panel.dependsOnPreviousAnswer === true && values[panel.looksAt] !== ''
 				? panel.paneOptions.map((option) =>
 						values[panel.looksAt] !== option.looksFor
-							? Object.entries(option.inputs).map((input) => newPasslist.push(input[0]))
+							? Object.entries(option.inputs).map((input) => ignoreList.push(input[0]))
 							: null
 				  )
 				: null
 		);
-		return setValidateIgnoreList(newPasslist);
+		await setValidateIgnoreList(ignoreList);
+		return { ignoreList };
 	}, [formObject, values]);
 
 	//
@@ -96,29 +97,33 @@ export default function useForm(callback, initialState = {}, options) {
 	);
 
 	// -> Will check if the full form or incoming data matches the provided validate options
-	function formIsValid(incomingCheckData = null) {
+	async function formIsValid(incomingCheckData = null) {
 		let errors = {};
 		let checkVals = incomingCheckData ? incomingCheckData : values;
-		console.log({ checkVals, validateIgnoreList });
-		updateValidationIgnoreList();
-		for (let key in validate) {
-			if (Object.keys(validate).includes(key)) {
-				// The incoming value does not meet validation requirements
-				let currValue = checkVals[key];
-				if (
-					!validateIgnoreList.includes(key) &&
-					currValue !== undefined &&
-					((Object.keys(validate[key]).includes('min') && currValue.length < validate[key].min) ||
-						(Object.keys(validate[key]).includes('exclude') && validate[key].exclude.includes(currValue)) ||
-						(Object.keys(validate[key]).includes('notNull') && !currValue) ||
-						(Object.keys(validate[key]).includes('max') && currValue.length > validate[key].max))
-				) {
-					errors[key] = validate[key].errorMsg;
+		const { ignoreList } = await updateValidationIgnoreList();
+
+		if (ignoreList) {
+			for (let key in validate) {
+				if (Object.keys(validate).includes(key)) {
+					// The incoming value does not meet validation requirements
+					let currValue = checkVals[key];
+					if (
+						!ignoreList.includes(key) &&
+						currValue !== undefined &&
+						((Object.keys(validate[key]).includes('min') && currValue.length < validate[key].min) ||
+							(Object.keys(validate[key]).includes('exclude') &&
+								validate[key].exclude.includes(currValue)) ||
+							(Object.keys(validate[key]).includes('notNull') && !currValue) ||
+							(Object.keys(validate[key]).includes('max') && currValue.length > validate[key].max))
+					) {
+						errors[key] = validate[key].errorMsg;
+					}
 				}
 			}
+
+			setValidationErrors(errors);
+			return { errors };
 		}
-		setValidationErrors(errors);
-		return errors;
 	}
 
 	// -->  This check is made in useEffect to assist with disabled next/submit buttons
