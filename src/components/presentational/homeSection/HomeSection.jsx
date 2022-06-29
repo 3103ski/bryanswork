@@ -20,7 +20,7 @@ export function HomePageSection({ title, text, button1, button2, bottomBorder = 
 					<Grid.Row>
 						<Grid.Column className={Style.SectionContent} mobile={16} computer={10}>
 							<h1>{title}</h1>
-							{children}
+							<div className={Style.ChildrenWrapper}>{children}</div>
 							<p>{text}</p>
 							<Link to={button1.route}>
 								<Button space='10y'>{button1.text}</Button>

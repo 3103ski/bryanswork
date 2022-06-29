@@ -17,5 +17,6 @@
 	svg {
 		margin-top: 4px;
 		position: absolute;
+		color: map-get($colors, color_themeBlack);
 	}
 }

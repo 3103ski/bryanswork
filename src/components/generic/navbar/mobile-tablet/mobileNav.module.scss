@@ -1,7 +1,7 @@
 @import 'sass';
 
 .Container {
-	position: absolute;
+	position: fixed;
 	z-index: 122;
 	top: 0;
 	left: 0;
@@ -10,7 +10,7 @@
 
 .ContactWrapper {
 	@include flex-center;
-	position: absolute;
+	position: fixed;
 	z-index: 121;
 	right: 5px;
 	top: 12px;

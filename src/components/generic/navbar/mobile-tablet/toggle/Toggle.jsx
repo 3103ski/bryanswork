@@ -53,5 +53,13 @@ function ToggleIcon({ open, iconSize = 27 }) {
 }
 
 function Path(props) {
-	return <motion.path fill='transparent' strokeWidth='3' stroke='white' strokeLinecap='round' {...props} />;
+	return (
+		<motion.path
+			fill='transparent'
+			strokeWidth='3'
+			stroke={Style.color_themeBlack}
+			strokeLinecap='round'
+			{...props}
+		/>
+	);
 }

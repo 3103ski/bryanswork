@@ -23,7 +23,8 @@
 
 .Link,
 .SectionLabel {
-	color: white;
+	// color: white;
+	color: map-get($colors, color_themeBlack);
 
 	&:hover {
 		color: map-get($colors, color_secondary);

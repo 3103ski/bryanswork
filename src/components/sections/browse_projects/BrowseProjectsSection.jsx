@@ -1,12 +1,11 @@
 // --> React
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // --> Packages
 import { Ref } from 'semantic-ui-react';
 
 // --> Project Imports
-import { Filters, Section, ProjectCard, Loading, TextWrapper, Button } from 'components';
+import { Filters, Section, ProjectCard, Loading, Header } from 'components';
 import { checkSeshStorageAddIfNeeded } from 'util';
 import { fetchProjects } from 'groq';
 import { useFilterManager } from 'hooks';
@@ -23,36 +22,37 @@ export default function BrowseProjectsSection() {
 		useFilterManager({
 			rootKey: 'tech',
 			subKey: 'title',
-			queryFunctionSetter: (setter) =>
-				checkSeshStorageAddIfNeeded(`bw__projects_browse`, setter, fetchProjects, null, 'projects'),
+			queryFunctionSetter: (callback) =>
+				checkSeshStorageAddIfNeeded(`bw__projects_browse`, callback, fetchProjects, null, 'projects'),
+			// qFS ===>  hit api ->  obtain results -> callback(results)
 		});
 
 	return !renderItems ? (
 		<Loading size='screen' />
 	) : (
 		<div className={Style.Wrapper}>
-			<Section fluid className={Style.BrowseHeader}>
-				<Section>
-					<h1>Explore My Work</h1>
-					<TextWrapper light>
-						<p>
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius libero dicta esse nihil non
-							dolor in aspernatur, aperiam ipsam consectetur adipisci exercitationem et fugiat voluptas
-							distinctio optio provident nesciunt velit.
-						</p>
-						<Link to={REQUEST_QUOTE}>
-							<Button icon={ARROW_RIGHT} color={'none'} thin>
-								If you're ready to start a project, fill out my project survey
-							</Button>
-						</Link>
-						<Link to={CONTACT}>
-							<Button icon={ARROW_RIGHT} thin color={'none'}>
-								If you have some questions for me first, reach out
-							</Button>
-						</Link>
-					</TextWrapper>
-				</Section>
-			</Section>
+			<Header
+				light
+				title={'Explore My Work'}
+				backgroundColor={Style.color_secondary}
+				buttons={[
+					{
+						link: REQUEST_QUOTE,
+						icon: ARROW_RIGHT,
+						text: `Need work?`,
+					},
+					{
+						link: CONTACT,
+						icon: ARROW_RIGHT,
+						text: `Send a message`,
+					},
+				]}>
+				<p>
+					I focus primarily on creating websites and web apps using{' '}
+					<strong>React JS, Node, Express, and MongoDB.</strong> I have a passion for developement and love
+					exploring other tools and tech when I have free time.
+				</p>
+			</Header>
 			<Ref innerRef={stickyRef}>
 				<Section fluid>
 					<Filters

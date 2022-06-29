@@ -16,12 +16,14 @@ import Style from './needSiteHeader.module.scss';
 
 export default function NeedSiteHeader() {
 	const OptionCard = ({ icon, text, route }) => (
-		<Link to={route}>
-			<div className={Style.OptionCard}>
-				<h3>{text}</h3>
-				<Icon icon={icon} />
-			</div>
-		</Link>
+		<Grid.Column computer={5} tablet={13} mobile={16} className={Style.OptionColumn}>
+			<Link to={route}>
+				<div className={Style.OptionCard}>
+					<h3>{text}</h3>
+					<Icon icon={icon} />
+				</div>
+			</Link>
+		</Grid.Column>
 	);
 	return (
 		<Section className={Style.Wrapper}>
@@ -30,15 +32,9 @@ export default function NeedSiteHeader() {
 					<Grid.Column mobile={16} tablet={16} computer={16}>
 						<h1>Need A Developer?</h1>
 					</Grid.Column>
-					<Grid.Column computer={5} tablet={8} mobile={16}>
-						<OptionCard text={`Send A Message`} icon={EMAIL} route={CONTACT} />
-					</Grid.Column>
-					<Grid.Column computer={5} tablet={8} mobile={16}>
-						<OptionCard text='Take Project Survey' icon={SURVEY} route={REQUEST_QUOTE} />
-					</Grid.Column>
-					<Grid.Column computer={5} tablet={8} mobile={16}>
-						<OptionCard text='Explore Work' icon={SURVEY} route={EXPLORE_PROJECTS} />
-					</Grid.Column>
+					<OptionCard text={`Send A Message`} icon={EMAIL} route={CONTACT} />
+					<OptionCard text='Take Project Survey' icon={SURVEY} route={REQUEST_QUOTE} />
+					<OptionCard text='Explore Work' icon={SURVEY} route={EXPLORE_PROJECTS} />
 				</Grid.Row>
 				<Grid.Row>
 					<Grid.Column mobile={16} tablet={16} computer={16}>

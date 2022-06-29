@@ -1,12 +1,11 @@
 // --> React
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // --> Packages
 import { Grid, Ref } from 'semantic-ui-react';
 
 // --> Project Imports
-import { Section, Filters, TechCard, Loading, TextWrapper, Button } from 'components';
+import { Section, Filters, TechCard, Loading, Header } from 'components';
 import { fetchTechnologies } from 'groq';
 import { checkSeshStorageAddIfNeeded } from 'util';
 import { ARROW_RIGHT } from 'icons';
@@ -17,36 +16,36 @@ import { EXPLORE_PROJECTS } from 'routes';
 import Style from './browseTechSection.module.scss';
 
 export default function BrowseTechSection() {
-	const stickyRef = React.createRef();
 	const { renderItems, filterOptions, activeFilters, totalMatches, totalItems, handleFilterClick, clearFilters } =
 		useFilterManager({
 			rootKey: 'tags',
 			subKey: 'title',
-			queryFunctionSetter: (setter) =>
-				checkSeshStorageAddIfNeeded(`bw_browse_technologies`, setter, fetchTechnologies, null, 'tech'),
+			queryFunctionSetter: (callback) =>
+				checkSeshStorageAddIfNeeded(`bw_browse_technologies`, callback, fetchTechnologies, null, 'tech'),
 		});
+
+	const stickyRef = React.createRef();
 
 	return !renderItems ? (
 		<Loading size='screen' />
 	) : (
 		<div className={Style.Wrapper}>
-			<Section fluid className={Style.BrowseHeader}>
-				<Section>
-					<h1>Explore My Tech Experience</h1>
-					<TextWrapper>
-						<p>
-							I focus primarily on creating websites and web apps using{' '}
-							<strong>React JS, Node, Express, and MongoDB.</strong> I have a passion for developement and
-							love exploring other tools and tech when I have free time.
-						</p>
-					</TextWrapper>
-					<Link to={EXPLORE_PROJECTS}>
-						<Button icon={ARROW_RIGHT} thin color={'none'}>
-							Check out some work
-						</Button>
-					</Link>
-				</Section>
-			</Section>
+			<Header
+				title={'Explore My Tech Experience'}
+				backgroundColor={Style.color_primaryPale}
+				buttons={[
+					{
+						link: EXPLORE_PROJECTS,
+						icon: ARROW_RIGHT,
+						text: 'Check Out Some Work',
+					},
+				]}>
+				<p>
+					I focus primarily on creating websites and web apps using{' '}
+					<strong>React JS, Node, Express, and MongoDB.</strong> I have a passion for developement and love
+					exploring other tools and tech when I have free time.
+				</p>
+			</Header>
 			<Ref innerRef={stickyRef}>
 				<Section fluid className={Style.Inner}>
 					<Filters

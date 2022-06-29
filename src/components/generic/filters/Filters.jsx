@@ -26,7 +26,7 @@ export function Filters({
 	const filters = (
 		<div className={Style.FilterSection} id='filterContainer'>
 			<Section>
-				<div className={`${Style.Top} someClass`}>
+				<div className={`${Style.Top}`}>
 					<p className={`${Style.Label} `}>{title}</p>
 				</div>
 				<div className={Style.FilterWrapper}>
@@ -51,10 +51,29 @@ export function Filters({
 		</div>
 	);
 
+	const [offset, setOffset] = React.useState(null);
+
+	const calcOffset = React.useCallback(() => {
+		let width = window.innerWidth;
+		let cpuBreakpoint = intFromPx(Style.bp_limit_cpu_sm_bottom);
+		let cpuNavHeight = intFromPx(Style.sizes_nav_height);
+		let offset = width < cpuBreakpoint ? 0 : cpuNavHeight;
+		setOffset(offset);
+	}, []);
+
+	React.useEffect(() => {
+		if (!offset) calcOffset();
+	}, [calcOffset, offset]);
+
+	React.useEffect(() => {
+		window.addEventListener('resize', calcOffset);
+		return () => window.removeEventListener('resize', calcOffset);
+	});
+
 	return !stickyContext ? (
 		filters
 	) : (
-		<Sticky context={stickyContext} offset={intFromPx(Style.sizes_nav_height)}>
+		<Sticky context={stickyContext} offset={offset}>
 			{filters}
 		</Sticky>
 	);

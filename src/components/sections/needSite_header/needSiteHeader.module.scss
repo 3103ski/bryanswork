@@ -10,29 +10,45 @@
 		@include banner-txt-default;
 		margin-bottom: 30px;
 	}
+
+	@media #{map-get($media, tablet_max)} {
+		padding: 0;
+		h1 {
+			margin-bottom: 10px;
+		}
+	}
 }
 
-.OptionCard {
-	@include flex-col-center-center;
-	background-color: map-get($colors, color_themeWhite);
-	width: 100%;
-	margin: 20px auto;
-	padding: 50px 30px;
-	border-radius: map-get($borders, borders_small_radius);
-	transition: 0.18s;
+.OptionColumn {
+	.OptionCard {
+		@include flex-col-center-center;
+		background-color: map-get($colors, color_themeWhite);
+		width: 100%;
+		margin: 20px auto;
+		padding: 50px 20px;
+		border-radius: map-get($borders, borders_small_radius);
+		transition: 0.18s;
 
-	h3 {
-		@include sub-default;
-		margin-bottom: 25px !important;
+		h3 {
+			@include sub-default;
+			margin-bottom: 25px !important;
+		}
+
+		svg {
+			@include banner-txt-default;
+			color: map-get($colors, color_secondary);
+			padding: 0 !important;
+		}
+
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.02) rotate(2deg);
+		}
 	}
-
-	svg {
-		@include banner-txt-default;
-		color: map-get($colors, color_secondary);
-	}
-
-	&:hover {
-		cursor: pointer;
-		transform: scale(1.02) rotate(2deg);
+	@media #{map-get($media, tablet_max)} {
+		margin: 0px auto !important;
+		.OptionCard {
+			margin: 10px auto;
+		}
 	}
 }

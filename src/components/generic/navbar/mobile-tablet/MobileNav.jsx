@@ -3,8 +3,8 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 
 // --> Project Imports
-// import { SERVICE, ABOUT_US, VIDEOS, OUR_WORK, HOME, ARTICLES, ESTIMATE, PHONE_NUMBER } from 'routes';
-// import { Button, Modal } from 'components';
+import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, CONTACT, REQUEST_QUOTE, NEED_WEBSITE } from 'routes';
+import { Button, Modal } from 'components';
 // import { PHONE, LEAF } from 'icons';
 
 // --> Components Imports
@@ -15,7 +15,13 @@ import Toggle from './toggle/Toggle.jsx';
 
 export default function MobileNav({ services = [] }) {
 	const [open, toggleOpen] = React.useState(false);
-	// const [contactOpen, toggleContactOpen] = React.useState(false);
+
+	const ToggleLink = ({ to, children }) => (
+		<Link toggle={toggleOpen} to={to}>
+			{children}
+		</Link>
+	);
+	const [contactOpen, toggleContactOpen] = React.useState(false);
 
 	return (
 		<>
@@ -23,21 +29,21 @@ export default function MobileNav({ services = [] }) {
 				className={Style.ContactWrapper}
 				// data-contact-open={contactOpen ? 1 : 0}
 				data-toggle-open={open ? 1 : 0}>
-				{/* <Button space='10x' icon={LEAF} onClick={() => toggleContactOpen(true)} color='secondary'>
+				<Button space='10x' onClick={() => toggleContactOpen(true)} color='primary' thin>
 					Get Started
 				</Button>
 				<Modal isOpen={contactOpen} title='Help Center' callback={toggleContactOpen}>
 					<Button.FluidWrapper>
 						<Button
 							as={Link}
-							to={ESTIMATE}
-							icon={LEAF}
+							to={REQUEST_QUOTE}
+							// icon={LEAF}
 							onClick={() => toggleContactOpen(false)}
 							fluid
 							space='10y'>
-							Request A Quote
+							Project Survey
 						</Button>
-						<Button
+						{/* <Button
 							as={'a'}
 							href={`tel:${PHONE_NUMBER}`}
 							onClick={() => toggleContactOpen(false)}
@@ -45,14 +51,19 @@ export default function MobileNav({ services = [] }) {
 							fluid
 							icon={PHONE}>
 							Call Us Now
-						</Button>
+						</Button> */}
 					</Button.FluidWrapper>
-				</Modal> */}
+				</Modal>
 			</div>
 			<div className={Style.Container}>
 				<Toggle toggle={() => toggleOpen(!open)} open={open} />
 				<Drawer open={open} toggle={toggleOpen}>
-					<Link.Container></Link.Container>
+					<Link.Container>
+						<ToggleLink to={HOME}>Home</ToggleLink>
+						<ToggleLink to={EXPLORE_PROJECTS}>My Work</ToggleLink>
+						<ToggleLink to={EXPLORE_TECH}>Tech I've Used</ToggleLink>
+						<ToggleLink to={NEED_WEBSITE}>Need A Website?</ToggleLink>
+					</Link.Container>
 				</Drawer>
 			</div>
 		</>

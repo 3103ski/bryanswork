@@ -17,4 +17,25 @@
 	&[data-bottom-border='1'] {
 		border-bottom: solid 2px map-get($colors, color_themeBlack);
 	}
+
+	@media #{map-get($media, mobile)} {
+		height: unset;
+
+		h1 {
+			padding: 0 !important;
+			margin-bottom: 0 !important;
+		}
+
+		p {
+			padding: 15px 0 20px 0;
+		}
+
+		.ChildrenWrapper {
+			padding-top: 15px;
+		}
+
+		.SectionContent {
+			padding: 80px 30px !important;
+		}
+	}
 }

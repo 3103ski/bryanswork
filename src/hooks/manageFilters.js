@@ -86,6 +86,7 @@ export default function useFilterManager({ rootKey, subKey = null, queryFunction
 		}
 	});
 
+	// Query Function Setter should a function that obtains data, accepts a callback, and passes the data results into that callback
 	React.useEffect(() => {
 		if (queryFunctionSetter && !list) {
 			queryFunctionSetter(setList);

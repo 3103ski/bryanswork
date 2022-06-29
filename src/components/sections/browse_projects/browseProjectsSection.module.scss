@@ -2,16 +2,4 @@
 
 .Wrapper {
 	min-height: 500px;
-	margin-top: map-get($sizes, sizes_nav_height);
-
-	.BrowseHeader {
-		@include flex-center-center;
-		padding: 40px 0;
-		background-color: map-get($colors, color_secondary);
-
-		h1 {
-			color: white;
-			@include banner-txt-default;
-		}
-	}
 }
