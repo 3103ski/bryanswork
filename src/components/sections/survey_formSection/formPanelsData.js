@@ -1,4 +1,4 @@
-import { simpleDropMenu, yesNoQuestion, textInput, provideRating } from './formDataUtility';
+import { simpleDropMenu, yesNoQuestion, textInput, provideRating } from 'jsoforms';
 
 export const formData = {
 	panes: [
@@ -11,12 +11,12 @@ export const formData = {
 			inputs: {
 				fullName: textInput({ placeholder: 'Your Name' }),
 				email: textInput({ placeholder: 'Email' }),
+				websiteName: textInput({ placeholder: `What's the working name of your app or website?` }),
+				logo: yesNoQuestion(`Will you also need a logo designed for your project?`),
 				projectType: simpleDropMenu({
 					placeholder: 'What type of project to you need to make?',
 					options: ['Web App', 'Website', { text: 'Not sure yet', value: 'unsure' }],
 				}),
-				websiteName: textInput({ placeholder: `What's the working name of your app or website?` }),
-				logo: yesNoQuestion(`Will you also need a logo designed for your project?`),
 			},
 		},
 		// ==> Pane 2
@@ -107,7 +107,7 @@ export const formData = {
 					looksFor: 'yes',
 					inputs: {
 						logoStyle: simpleDropMenu({
-							placeholder: `Whay sounds most like the logo you're looking for?`,
+							placeholder: `What sounds most like the logo you're looking for?`,
 							options: [
 								'Detailed, almost like a graphic or image',
 								'Not detailed, but has a lot going on',

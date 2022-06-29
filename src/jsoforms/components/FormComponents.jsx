@@ -8,14 +8,14 @@ import { Dropdown as SUI_DD, Form, Input, TextArea as SUI_TA, Label, Message } f
 import { isNumber } from 'util';
 
 // Component Imports
-import style from './shared.module.scss';
+import Style from './shared.module.scss';
 import './semanticUIOverride.scss';
 
 export function TextInput({ name, value, onChange, ...rest }) {
 	return (
 		<Form.Field
 			control={Input}
-			className={style.TextInput}
+			className={Style.TextInput}
 			name={name}
 			onChange={onChange}
 			value={value}
@@ -27,7 +27,7 @@ export function TextArea({ name, value, onChange, ...rest }) {
 	return (
 		<Form.Field
 			control={SUI_TA}
-			className={style.TextArea}
+			className={Style.TextArea}
 			name={name}
 			onChange={onChange}
 			value={value}
@@ -43,7 +43,7 @@ export function FileInput({ accept = '.wav, .mp3', onChange, ...rest }) {
 			type='file'
 			accept={accept}
 			onChange={onChange}
-			className={style.FileInput}
+			className={Style.FileInput}
 			{...rest}
 		/>
 	);
@@ -51,7 +51,7 @@ export function FileInput({ accept = '.wav, .mp3', onChange, ...rest }) {
 
 export function FormTitle({ size = 'med', children }) {
 	return (
-		<h2 data-size={size} className={style.FormTitle}>
+		<h2 data-size={size} className={Style.FormTitle}>
 			{children}
 		</h2>
 	);
@@ -59,7 +59,7 @@ export function FormTitle({ size = 'med', children }) {
 
 export function DropdownCollection({ multiple = true, ...rest }) {
 	return (
-		<Form.Field control={SUI_DD} fluid multiple={multiple} search selection {...rest} className={style.Dropdown} />
+		<Form.Field control={SUI_DD} fluid multiple={multiple} search selection {...rest} className={Style.Dropdown} />
 	);
 }
 
@@ -96,11 +96,11 @@ export function DollarInput({ onChange, formHook = true, name, value, ...rest })
 			onChange={checkOnChange}
 			name={name}
 			{...rest}>
-			<Label className={style.LabelLeft} basic>
+			<Label className={Style.LabelLeft} basic>
 				$
 			</Label>
 			<input />
-			<Label className={style.LabelRight}>.00</Label>
+			<Label className={Style.LabelRight}>.00</Label>
 		</Form.Field>
 	);
 }

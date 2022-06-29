@@ -1,10 +1,12 @@
 import React from 'react';
-import { updateObj } from '../util/';
-import { TextInput, Dropdown, TextWrapper } from 'components';
 
-export function useForm(callback, initialState = {}, options) {
+import { updateObj } from '../util/';
+import { TextInput, Dropdown } from '../components';
+import { TextWrapper } from 'components';
+
+export default function useForm(callback, initialState = {}, options) {
 	// --> Incoming Hook Data
-	const { onChangeCB, validate = {}, formData = { panes: [] } } = { ...options };
+	const { onChangeCB, validate = {}, formObject = { panes: [] } } = { ...options };
 
 	// --> Managing Values & Validation Errors
 	const [values, setValues] = React.useState(initialState);
@@ -14,8 +16,7 @@ export function useForm(callback, initialState = {}, options) {
 	const [validateIgnoreList, setValidateIgnoreList] = React.useState([]);
 	const updateValidationIgnoreList = React.useCallback(() => {
 		let newPasslist = [];
-
-		formData.panes.map((panel) =>
+		formObject.panes.map((panel) =>
 			panel.dependsOnPreviousAnswer === true && values[panel.looksAt] !== ''
 				? panel.paneOptions.map((option) =>
 						values[panel.looksAt] !== option.looksFor
@@ -24,9 +25,8 @@ export function useForm(callback, initialState = {}, options) {
 				  )
 				: null
 		);
-
 		return setValidateIgnoreList(newPasslist);
-	}, [formData, values]);
+	}, [formObject, values]);
 
 	//
 	// --------------
@@ -60,6 +60,7 @@ export function useForm(callback, initialState = {}, options) {
 					errors[keys[x]] = validate[keys[x]].errorMsg;
 				}
 			}
+			// console.log({ errors });
 			setValidationErrors(errors);
 		},
 		[keyPassesValidation, validate, values]
@@ -95,25 +96,28 @@ export function useForm(callback, initialState = {}, options) {
 	);
 
 	// -> Will check if the full form or incoming data matches the provided validate options
-	async function formIsValid(incomingCheckData = null) {
+	function formIsValid(incomingCheckData = null) {
 		let errors = {};
 		let checkVals = incomingCheckData ? incomingCheckData : values;
+		console.log({ checkVals, validateIgnoreList });
+		updateValidationIgnoreList();
 		for (let key in validate) {
 			if (Object.keys(validate).includes(key)) {
 				// The incoming value does not meet validation requirements
+				let currValue = checkVals[key];
 				if (
 					!validateIgnoreList.includes(key) &&
-					((Object.keys(validate[key]).includes('min') && checkVals[key].length < validate[key].min) ||
-						(Object.keys(validate[key]).includes('exclude') &&
-							validate[key].exclude.includes(checkVals[key])) ||
-						(Object.keys(validate[key]).includes('notNull') && !checkVals[key]) ||
-						(Object.keys(validate[key]).includes('max') && checkVals[key].length > validate[key].max))
+					currValue !== undefined &&
+					((Object.keys(validate[key]).includes('min') && currValue.length < validate[key].min) ||
+						(Object.keys(validate[key]).includes('exclude') && validate[key].exclude.includes(currValue)) ||
+						(Object.keys(validate[key]).includes('notNull') && !currValue) ||
+						(Object.keys(validate[key]).includes('max') && currValue.length > validate[key].max))
 				) {
-					errors[key] = await validate[key].errorMsg;
+					errors[key] = validate[key].errorMsg;
 				}
 			}
 		}
-		await setValidationErrors(errors);
+		setValidationErrors(errors);
 		return errors;
 	}
 
@@ -260,83 +264,5 @@ export function useForm(callback, initialState = {}, options) {
 		validationErrors,
 		formNotValid: Object.keys(validationErrors).length > 0,
 		disableSubmit: Object.keys(validationErrors).length > 0,
-	};
-}
-
-export function useFormUtility() {
-	function getInputs(pane, currValues) {
-		let inputs = {};
-		if (pane.dependsOnPreviousAnswer === undefined) {
-			inputs = { ...pane.inputs };
-		} else {
-			pane.paneOptions.map((option) => {
-				if (currValues !== undefined && currValues[pane.looksAt] !== '') {
-					if (currValues[pane.looksAt] === option.looksFor) {
-						inputs = { ...inputs, ...option.inputs };
-					} else {
-						Object.keys(option.inputs).map((removableInput) => {
-							let newValues = {};
-							Object.entries(currValues).map((val) => {
-								if (val[0] !== removableInput) {
-									newValues[val[0]] = val[1];
-								}
-								return null;
-							});
-
-							return null;
-						});
-					}
-				} else {
-					inputs = { ...inputs, ...option.inputs };
-				}
-				return null;
-			});
-		}
-		return inputs;
-	}
-
-	function extractInitialFormData(formData, values) {
-		let validate = {};
-		let initialState = {};
-
-		formData.map((pane) => {
-			let inputs = getInputs(pane, values);
-			Object.entries(inputs).map((p) => {
-				if (p[1].validate) {
-					validate[p[0]] = p[1].validate;
-				}
-				initialState[p[0]] = p[1].initial;
-				return null;
-			});
-			return null;
-		});
-
-		return { validate, initialState };
-	}
-
-	function extractCurrentPaneData(pane, values) {
-		let validate = {};
-		let initialState = {};
-		let inputs = getInputs(pane, values);
-
-		Object.entries(inputs).map((input) => {
-			let [key, val] = [input[0], input[1]];
-			if (val.validate) {
-				validate = { ...validate, [key]: val.validate };
-			}
-			initialState[key] = values[key];
-			return null;
-		});
-		for (let input in inputs) {
-			if (inputs[input].validate) {
-				validate[input] = inputs[input].validate;
-			}
-		}
-
-		return { validate, initialState };
-	}
-	return {
-		extractCurrentPaneData,
-		extractInitialFormData,
 	};
 }

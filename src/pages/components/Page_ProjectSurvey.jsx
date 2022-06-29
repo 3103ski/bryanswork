@@ -2,7 +2,7 @@
 import React from 'react';
 
 // --> Project Imports
-import { SurveyFormSection, Section } from 'components';
+import { Section, SurveyFormSection } from 'components';
 
 // --> Component Imports
 import ViewWrapper from './ViewWrapper';

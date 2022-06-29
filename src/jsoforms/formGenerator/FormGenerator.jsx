@@ -6,13 +6,13 @@ import { Form } from 'semantic-ui-react';
 
 // --> Project Imports
 import { Button, Loading } from 'components';
-import { useForm, useFormUtility } from 'hooks';
+import { useForm, useFormUtility } from '../hooks';
 
 //--> Component Imports
-import Style from './projectSurvey.module.scss';
-import { formData } from './formPanelsData.js';
+import Style from './formGenerator.module.scss';
+// import { formObject } from '../../sections/survey_formSection/formPanelsData.js';
 
-export default function FormGenerator() {
+export default function FormGenerator({ formObject, callback }) {
 	// Track current location in the form
 	const [activePanel, setActivePanel] = React.useState(0);
 
@@ -30,41 +30,39 @@ export default function FormGenerator() {
 
 	// --> Extract form data using utility functions from hook
 	const { extractInitialFormData } = useFormUtility();
-	const { validate, initialState } = extractInitialFormData(formData.panes);
-
-	console.log({ initialState, validate });
+	const { validate, initialState } = extractInitialFormData(formObject.panes);
 
 	// --> Setup the hook for the entire form (single or multi pane)
 	const { onSubmit, formIsValid, setValues, values, updateValidationIgnoreList } = useForm(
 		handleOnSubmit,
 		initialState,
-		{ validate, formData }
+		{ validate, formObject }
 	);
 
+	// --> A function that will accept the final (or only) pane's data, merge it with all collected so far, and pass it into api callback
+	async function handleOnSubmit(finalData) {
+		const payload = { ...values, ...finalData };
+		let contentSet = await handleFormNavigation(null, finalData);
+		// await setValues(payload);
+		await updateValidationIgnoreList();
+		let errors = await formIsValid(payload);
+		console.log({ errors });
+		if (Object.keys(errors).length === 0 && !contentSet) {
+			for (let key in payload) {
+				if (payload[key] === '') delete payload[key];
+			}
+			callback(payload);
+		}
+	}
+
 	// --> A function that will fire every time a multi-pane form goes back OR forth
-	function handlePanelButtonOnClick(panelIndex = null, newVals) {
+	function handleFormNavigation(panelIndex = null, newVals) {
 		setValues({ ...values, ...newVals });
 		updateValidationIgnoreList();
 
 		if (panelIndex !== null) {
 			setActivePanel(panelIndex);
 			return true;
-		}
-	}
-
-	// --> A function that will accept the final (or only) pane's data, merge it with all collected so far, and pass it into api callback
-	async function handleOnSubmit(finalData) {
-		const payload = { ...values, ...finalData };
-		let contentSet = await handlePanelButtonOnClick(null, finalData);
-		let errors = await formIsValid(payload);
-
-		if (Object.keys(errors).length === 0 && !contentSet) {
-			for (let key in payload) {
-				if (payload[key] === '') delete payload[key];
-			}
-			console.log({ payload });
-
-			// Fire submit function to API
 		}
 	}
 
@@ -151,10 +149,10 @@ export default function FormGenerator() {
 					<div
 						className={Style.FormInner}
 						style={{
-							width: `${formWidth * formData.panes.length}px`,
+							width: `${formWidth * formObject.panes.length}px`,
 							marginLeft: `-${activePanel * formWidth}px`,
 						}}>
-						{formData.panes
+						{formObject.panes
 							.map((pane) => (showPanel(pane) ? pane : null))
 							.filter((p) => p !== null)
 							.map((panel, i) => (
@@ -165,8 +163,8 @@ export default function FormGenerator() {
 									onSubmitCallback={handleOnSubmit}
 									values={values}
 									setValues={setValues}
-									isFinal={i === formData.panes.length - removedPanes.length - 1 ? true : null}
-									paneButtonCallback={handlePanelButtonOnClick}
+									isFinal={i === formObject.panes.length - removedPanes.length - 1 ? true : null}
+									paneButtonCallback={handleFormNavigation}
 									key={`${Math.random()}__${i}`}
 									style={{ width: `${formWidth}px`, padding: `20px ${sidePad}px` }}
 								/>
