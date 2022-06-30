@@ -90,6 +90,12 @@ export function fetchProject(slug) {
                     url,
                     _id
                 }
+            },
+            screenshots[]{
+                asset-> {
+                    url,
+                    _id
+                }
             }
         }`,
 		{ slug }

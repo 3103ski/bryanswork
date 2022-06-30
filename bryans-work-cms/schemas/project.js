@@ -88,5 +88,11 @@ export default {
 			type: 'array',
 			of: [{ type: 'image' }],
 		},
+		{
+			name: 'screenshots',
+			title: 'Screenshots',
+			type: 'array',
+			of: [{ type: 'image' }],
+		},
 	],
 };

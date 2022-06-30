@@ -21,7 +21,6 @@ export function Button({
 	className,
 	...rest
 }) {
-	console.log(children === undefined);
 	return (
 		<SUIButton
 			data-space={space}

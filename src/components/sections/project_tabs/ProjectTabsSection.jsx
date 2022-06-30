@@ -13,8 +13,6 @@ import { intFromPx } from 'util';
 import Style from './projectTabsSection.module.scss';
 
 export default function ProjectTabsSection({ project }) {
-	console.log(project);
-
 	const [tabList, setTabList] = React.useState(null);
 	const [panels, setPanels] = React.useState(null);
 
@@ -81,6 +79,49 @@ export default function ProjectTabsSection({ project }) {
 			</div>
 		);
 	};
+	const Screenshots = () => {
+		const [images, setImages] = React.useState(null);
+		const [focusImage, setFocusImage] = React.useState(null);
+
+		const handleThumbnailClick = (i) => {
+			return setFocusImage(images[i]);
+		};
+
+		React.useEffect(() => {
+			if (project.screenshots && project.screenshots.length > 0 && !images) {
+				let imageList = project.screenshots.map((image) => image.asset.url);
+				setImages(imageList);
+			}
+		}, [images]);
+
+		return (
+			<div>
+				<Modal inverted blur open={focusImage} onClose={() => setFocusImage(null)}>
+					<Modal.Content style={{ marginTop: `${intFromPx(Style.sizes_nav_height) + 40}px !important` }}>
+						<Image fluid rounded src={focusImage} />
+					</Modal.Content>
+				</Modal>
+				<Grid centered>
+					<Grid.Row>
+						{!images
+							? null
+							: images.map((image, i) => (
+									<Grid.Column computer={3} tablet={7} mobile={4}>
+										<Image
+											className={Style.MockupThumbnail}
+											rounded
+											bordered
+											fluid
+											src={image}
+											onClick={() => handleThumbnailClick(i)}
+										/>
+									</Grid.Column>
+							  ))}
+					</Grid.Row>
+				</Grid>
+			</div>
+		);
+	};
 
 	React.useEffect(() => {
 		let newTabList = [];
@@ -95,6 +136,12 @@ export default function ProjectTabsSection({ project }) {
 				newTabList.push('Tech');
 				newPanels.push(<Tech />);
 			}
+
+			if (project.screenshots && project.screenshots.length > 0) {
+				newTabList.push('Screenshots');
+				newPanels.push(<Screenshots />);
+			}
+
 			if (project.mockups && project.mockups.length > 0) {
 				newTabList.push('Design Mockups');
 				newPanels.push(<Mockups />);
