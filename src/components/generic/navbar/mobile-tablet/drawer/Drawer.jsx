@@ -28,9 +28,8 @@ export default function Drawer({ open, toggle, children }) {
 						className={Style.EstBtn}
 						onClick={() => toggle(false)}
 						icon={SURVEY}
-						thin
-						color='secondary'>
-						Request Estimate
+						color='primary'>
+						Project Survey
 					</Button>
 				</div>
 				{children}
