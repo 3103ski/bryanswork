@@ -2,6 +2,9 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
+// Packages
+import { Icon } from '@iconify/react';
+
 // --> Project Imports
 import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, REQUEST_QUOTE, NEED_WEBSITE, CONTACT } from 'routes';
 import { Button, Modal } from 'components';
@@ -13,7 +16,7 @@ import Link from './link/Link.jsx';
 import Style from './mobileNav.module.scss';
 import Toggle from './toggle/Toggle.jsx';
 
-export default function MobileNav({ services = [] }) {
+export default function MobileNav() {
 	const [open, toggleOpen] = React.useState(false);
 	const [contactOpen, toggleContactOpen] = React.useState(false);
 
@@ -26,13 +29,9 @@ export default function MobileNav({ services = [] }) {
 	return (
 		<>
 			<div className={Style.ContactWrapper} data-toggle-open={open ? 1 : 0}>
-				<Button
-					className={Style.ContactBtn}
-					icon={PHONE}
-					thin
-					onClick={() => toggleContactOpen(true)}
-					color='none'
-				/>
+				<div className={Style.ContactBtn} onClick={() => toggleContactOpen(true)}>
+					<Icon icon={PHONE} />
+				</div>
 				<Modal isOpen={contactOpen} title={`Let's Work`} callback={toggleContactOpen}>
 					<Button.FluidWrapper>
 						<Button

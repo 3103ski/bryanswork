@@ -24,7 +24,7 @@
 	}
 
 	.ContactBtn {
-		padding: 19px 15px 15px 22px !important;
+		padding: 19px 15px 10px 22px !important;
 		border-bottom-right-radius: 0 !important;
 		border-bottom-left-radius: 0 !important;
 		border-top-right-radius: 0 !important;
@@ -33,6 +33,7 @@
 
 		svg {
 			font-size: 26px !important;
+			color: map-get($colors, color_themeBlack);
 		}
 	}
 }
