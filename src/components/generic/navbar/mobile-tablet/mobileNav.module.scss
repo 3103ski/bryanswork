@@ -12,8 +12,8 @@
 	@include flex-center;
 	position: fixed;
 	z-index: 121;
-	right: 5px;
-	bottom: 20px;
+	right: 0px;
+	bottom: 0px;
 	opacity: 1;
 	transition: 0.2s;
 	transition-timing-function: ease-in-out;
@@ -21,6 +21,19 @@
 	&[data-toggle-open='1'],
 	&[data-contact-open='1'] {
 		opacity: 0;
+	}
+
+	.ContactBtn {
+		padding: 19px 15px 15px 22px !important;
+		border-bottom-right-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+		border-top-right-radius: 0 !important;
+		border-top-left-radius: 40px !important;
+		background-color: map-get($colors, color_primary) !important;
+
+		svg {
+			font-size: 26px !important;
+		}
 	}
 }
 

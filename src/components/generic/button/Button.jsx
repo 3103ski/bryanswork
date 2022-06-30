@@ -21,6 +21,7 @@ export function Button({
 	className,
 	...rest
 }) {
+	console.log(children === undefined);
 	return (
 		<SUIButton
 			data-space={space}
@@ -29,6 +30,7 @@ export function Button({
 			data-txt-color={txtcolor}
 			data-icon-left={iconLeft ? 1 : 0}
 			data-thin={thin ? '1' : '0'}
+			data-no-text={children === undefined ? 1 : 0}
 			data-self-center={selfCenter ? 1 : 0}
 			className={`${style.Button} ${className}`}
 			{...rest}>

@@ -88,6 +88,12 @@
 		}
 	}
 
+	&[data-no-text='1'] {
+		svg {
+			margin: 0 !important;
+		}
+	}
+
 	// BUTTON COLORS
 	&[data-color='primary'] {
 		background-color: map-get($colors, color_primary) !important;

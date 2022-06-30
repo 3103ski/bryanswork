@@ -26,9 +26,13 @@ export default function MobileNav({ services = [] }) {
 	return (
 		<>
 			<div className={Style.ContactWrapper} data-toggle-open={open ? 1 : 0}>
-				<Button space='10x' thin onClick={() => toggleContactOpen(true)} color='secondary'>
-					Hire Me
-				</Button>
+				<Button
+					className={Style.ContactBtn}
+					icon={PHONE}
+					thin
+					onClick={() => toggleContactOpen(true)}
+					color='none'
+				/>
 				<Modal isOpen={contactOpen} title={`Let's Work`} callback={toggleContactOpen}>
 					<Button.FluidWrapper>
 						<Button
