@@ -21,7 +21,8 @@ export default function Drawer({ open, toggle, children }) {
 				className={Style.DrawerWrapper}
 				variants={motion_variants_nav.mobile}
 				animate={open ? 'drawerOpen' : 'drawerClosed'}>
-				<div style={{ position: 'absolute', left: '20px', top: '20px' }}>
+				{children}
+				<div className={Style.ButtonWrapper}>
 					<Button
 						as={Link}
 						to={REQUEST_QUOTE}
@@ -32,7 +33,6 @@ export default function Drawer({ open, toggle, children }) {
 						Project Survey
 					</Button>
 				</div>
-				{children}
 			</motion.div>
 			<div className={Style.Backdrop} onClick={() => toggle(false)} data-open={open ? 1 : 0} />
 		</>

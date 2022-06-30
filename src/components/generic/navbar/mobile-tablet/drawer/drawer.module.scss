@@ -2,18 +2,22 @@
 
 .DrawerWrapper {
 	@include remove-scrollbar;
-	@include flex-end;
+	@include flex-col-end;
 	position: relative;
 	z-index: 121;
 	height: 100vh;
-	width: 375px;
+	width: 300px;
 	background-color: map-get($colors, color_primary);
 	overflow-y: scroll;
+	padding-bottom: 70px;
 
-	.EstBtn {
-		position: relative;
-		z-index: 130;
-		margin-top: 110px !important;
+	.ButtonWrapper {
+		display: flex;
+		padding: 0 30px;
+		.EstBtn {
+			position: relative;
+			z-index: 0;
+		}
 	}
 }
 
