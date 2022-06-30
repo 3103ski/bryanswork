@@ -11,7 +11,7 @@
 		@include flex-end;
 		position: inherit;
 		z-index: 100;
-		min-height: 60vh;
+		// min-height: 60vh;
 		padding: 0 0 130px 0;
 		box-sizing: border-box;
 
@@ -92,15 +92,16 @@
 	@media #{map-get($media, mobile)} {
 		.Top {
 			.ProfilePic {
-				margin-top: 60px !important;
+				margin-top: 10px !important;
 				img {
-					max-width: 100px !important;
+					max-width: 120px !important;
 				}
 			}
 		}
 		.Bottom {
 			.Buttons {
-				@include flex-col-center;
+				@include flex-col-start;
+				align-items: center !important;
 			}
 		}
 	}
