@@ -102,6 +102,8 @@
 	}
 
 	.Mobile_FilterWrapper {
+		@include shadow-dark-soft;
+
 		z-index: 800;
 		top: 0;
 		left: 100%;
@@ -109,7 +111,6 @@
 		width: 100vw;
 		position: fixed;
 		transition: 0.18s;
-		@include shadow-dark-soft;
 
 		.Top {
 			@include flex-center;
@@ -140,7 +141,7 @@
 
 	.DisplayPanel {
 		@include flex-center;
-		padding: 20px 20px 20px 80px;
+		padding: 20px 20px 20px 20px;
 		background-color: map-get($colors, color_themeWhite);
 		margin-bottom: 40px;
 

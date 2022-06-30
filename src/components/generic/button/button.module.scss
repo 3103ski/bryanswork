@@ -3,6 +3,7 @@
 .Button {
 	@include flex-center-center;
 	@include shadow-default;
+
 	padding: 17px 35px !important;
 	font-size: 19px !important;
 	font-weight: 500 !important;
@@ -71,6 +72,13 @@
 		svg {
 			margin: 0 12px 0 0 !important;
 			font-size: 16px !important;
+		}
+
+		@media #{map-get($media, mobile)} {
+			font-size: 16px !important;
+			svg {
+				font-size: 13px !important;
+			}
 		}
 	}
 

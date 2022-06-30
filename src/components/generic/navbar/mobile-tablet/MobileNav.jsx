@@ -26,7 +26,7 @@ export default function MobileNav({ services = [] }) {
 	return (
 		<>
 			<div className={Style.ContactWrapper} data-toggle-open={open ? 1 : 0}>
-				<Button space='10x' onClick={() => toggleContactOpen(true)} color='secondary'>
+				<Button space='10x' thin onClick={() => toggleContactOpen(true)} color='secondary'>
 					Hire Me
 				</Button>
 				<Modal isOpen={contactOpen} title={`Let's Work`} callback={toggleContactOpen}>
@@ -52,8 +52,8 @@ export default function MobileNav({ services = [] }) {
 					</Button.FluidWrapper>
 				</Modal>
 			</div>
+			<Toggle toggle={() => toggleOpen(!open)} open={open} />
 			<div className={Style.Container}>
-				<Toggle toggle={() => toggleOpen(!open)} open={open} />
 				<Drawer open={open} toggle={toggleOpen}>
 					<Link.Container>
 						<ToggleLink to={HOME}>Home</ToggleLink>
