@@ -20,4 +20,8 @@
 		position: absolute;
 		color: map-get($colors, color_themeBlack);
 	}
+
+	@media #{map-get($media, cpu_min)} {
+		display: none !important;
+	}
 }

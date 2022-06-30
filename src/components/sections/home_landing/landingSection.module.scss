@@ -11,7 +11,7 @@
 		@include flex-end;
 		position: inherit;
 		z-index: 100;
-		// min-height: 60vh;
+		min-height: 60vh;
 		padding: 0 0 130px 0;
 		box-sizing: border-box;
 
@@ -66,7 +66,7 @@
 	@media #{map-get($media, tablet_max)} {
 		.Top {
 			padding: 20px 10px 130px 10px;
-
+			min-height: unset !important;
 			.ProfilePic {
 				img {
 					max-width: 180px !important;

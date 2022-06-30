@@ -44,14 +44,28 @@ export function ProjectCard({ project, activeFilters = [] }) {
 							<p>{project.summary}</p>
 						</Grid.Column>
 						<Grid.Column mobile={16} tablet={5} computer={3}>
-							<Button as='a' href={project.projectLink} target='_blank' color='primary' thin space='10y'>
+							<Button
+								as={Link}
+								to={`${PROJECT_PAGE}/${project.slug.current}`}
+								color='primary'
+								thin
+								space='10y'
+								// icon={ARROW_RIGHT}
+								// iconLeft={false}
+							>
+								Read More  
+							</Button>
+							<Button
+								as='a'
+								href={project.projectLink}
+								target='_blank'
+								color='none'
+								icon={ARROW_RIGHT}
+								// iconLeft={false}
+								thin
+								space='10y'>
 								Visit Project
 							</Button>
-							<Link to={`${PROJECT_PAGE}/${project.slug.current}`}>
-								<Button color='none' thin space='10y' icon={ARROW_RIGHT} iconLeft={false}>
-									Read More  
-								</Button>
-							</Link>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
