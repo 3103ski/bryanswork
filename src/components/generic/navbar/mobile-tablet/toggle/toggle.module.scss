@@ -10,7 +10,7 @@
 	padding: 24px 22px 15px 16px !important;
 	border: none;
 	border-top-right-radius: 40px;
-	background-color: map-get($colors, color_primaryPale) !important;
+	background-color: map-get($colors, color_primary) !important;
 
 	height: map-get($sizes, sizes_nav_m_toggle);
 	width: map-get($sizes, sizes_nav_m_toggle);

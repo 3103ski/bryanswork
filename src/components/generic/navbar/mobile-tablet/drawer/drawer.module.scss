@@ -2,6 +2,7 @@
 
 .DrawerWrapper {
 	@include remove-scrollbar;
+	@include flex-end;
 	position: relative;
 	z-index: 121;
 	height: 100vh;
