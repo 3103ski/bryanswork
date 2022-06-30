@@ -86,16 +86,32 @@ export function fetchProject(slug) {
                 }
             },
             mockups[]{
-                asset-> {
-                    url,
-                    _id
-                }
+                thumbnail{
+                    asset-> {
+                        url,
+                        _id
+                    }
+                },
+                fullImage{
+                    asset-> {
+                        url,
+                        _id
+                    }
+                },
             },
             screenshots[]{
-                asset-> {
-                    url,
-                    _id
-                }
+                thumbnail{
+                    asset-> {
+                        url,
+                        _id
+                    }
+                },
+                fullImage{
+                    asset-> {
+                        url,
+                        _id
+                    }
+                },
             }
         }`,
 		{ slug }

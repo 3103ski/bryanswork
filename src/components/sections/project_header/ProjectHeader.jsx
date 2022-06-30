@@ -22,7 +22,9 @@ export default function ProjectHeader({ project }) {
 				<Grid>
 					<Grid.Row>
 						<Grid.Column mobile={16} tablet={8} computer={9}>
-							{project.mainImage ? <Image rounded bordered src={project.mainImage.asset.url} /> : null}
+							{project.mainImage ? (
+								<Image className={Style.MainImage} rounded bordered src={project.mainImage.asset.url} />
+							) : null}
 						</Grid.Column>
 						<Grid.Column stretched mobile={16} tablet={8} computer={7} className={Style.DetailsColumn}>
 							<div className={Style.DetailInner}>

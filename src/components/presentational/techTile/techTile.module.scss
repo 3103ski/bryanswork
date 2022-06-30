@@ -28,4 +28,7 @@
 		transform: scale(1.05) rotate(5deg);
 		cursor: pointer;
 	}
+	@media #{map-get($media, mobile)} {
+		margin: 10px 0 20px 0;
+	}
 }

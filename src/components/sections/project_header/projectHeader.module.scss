@@ -37,4 +37,21 @@
 			}
 		}
 	}
+
+	@media #{map-get($media, tablet_max)} {
+		padding-top: 25px;
+
+		.MainImage {
+			margin-bottom: 20px;
+		}
+
+		.TitleWrapper {
+			@include flex-col-start;
+			align-items: flex-start;
+
+			p {
+				margin: 8px 0 12px 0;
+			}
+		}
+	}
 }

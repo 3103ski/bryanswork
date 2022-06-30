@@ -12,12 +12,12 @@ import tech from './tech';
 import techPage from './techPage';
 
 import tags from './tag';
-
+import imageAsset from './imageAsset';
 import project from './project';
 import projectPage from './workPage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
 	name: 'default',
-	types: schemaTypes.concat([blockContent, author, project, tech, projectPage, techPage, tags]),
+	types: schemaTypes.concat([blockContent, author, project, tech, projectPage, techPage, imageAsset, tags]),
 });

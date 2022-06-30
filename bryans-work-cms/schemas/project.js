@@ -86,13 +86,13 @@ export default {
 			name: 'mockups',
 			title: 'Mockups',
 			type: 'array',
-			of: [{ type: 'image' }],
+			of: [{ type: 'imageAsset' }],
 		},
 		{
 			name: 'screenshots',
 			title: 'Screenshots',
 			type: 'array',
-			of: [{ type: 'image' }],
+			of: [{ type: 'imageAsset' }],
 		},
 	],
 };
