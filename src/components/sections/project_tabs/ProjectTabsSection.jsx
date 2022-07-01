@@ -58,6 +58,9 @@ export default function ProjectTabsSection({ project }) {
 			<div>
 				<Modal inverted blur open={focusImage} onClose={() => setFocusImage(null)}>
 					<Modal.Content style={{ marginTop: `${intFromPx(Style.sizes_nav_height) + 40}px !important` }}>
+						<div className={Style.PrevPicture}>
+							<p>BACK</p>
+						</div>
 						<Image
 							fluid
 							rounded

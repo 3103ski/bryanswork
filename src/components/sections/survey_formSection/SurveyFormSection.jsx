@@ -11,7 +11,7 @@ import { SERVER_SURVEY_FORMS } from 'routes';
 
 // --> Component Imports
 import Style from './surveyFormSection.module.scss';
-import { formData } from './formPanelsData';
+import { formData } from './surveyFormData';
 
 export default function ProjectSurveySection() {
 	const [isLoading, toggleIsLoading] = React.useState(false);

@@ -164,6 +164,7 @@ export default function FormGenerator({ formObject, callback }) {
 									values={values}
 									setValues={setValues}
 									isFinal={i === formObject.panes.length - removedPanes.length - 1 ? true : null}
+									submitText={formObject.submitText ? formObject.submitText : 'Submit'}
 									paneButtonCallback={handleFormNavigation}
 									key={`${Math.random()}__${i}`}
 									style={{ width: `${formWidth}px`, padding: `20px ${sidePad}px` }}
@@ -186,6 +187,7 @@ const FormPanel = ({
 	finalText = 'send',
 	onSubmitCallback,
 	isFinal,
+	submitText,
 	...rest
 }) => {
 	// --> Setup Panel Data
@@ -223,7 +225,7 @@ const FormPanel = ({
 				) : null}
 				{isFinal ? (
 					<Button disabled={disableNextButton} thin onClick={() => onSubmitCallback(panelValues)}>
-						Send Survey
+						{submitText}
 					</Button>
 				) : (
 					<Button

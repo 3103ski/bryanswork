@@ -8,6 +8,7 @@ import axios from 'axios';
 import { ReactJSOForm, textInput, FormSuccess } from 'jsoforms';
 import { Section, Loading } from 'components';
 import { SERVER_CONTACT_FORMS } from 'routes';
+import { contactFormData } from './contactFormData';
 
 // --> Component Imports
 import Style from './contactFormSection.module.scss';
@@ -47,19 +48,20 @@ export default function ContactFormSection() {
 					</FormSuccess>
 				) : (
 					<ReactJSOForm
-						formObject={{
-							panes: [
-								{
-									display: {
-										title: `Quick Question? Reach out and I'll get back to you`,
-									},
-									inputs: {
-										name: textInput({ placeholder: 'Your Name' }),
-										email: textInput({ placeholder: 'Email Address' }),
-									},
-								},
-							],
-						}}
+						formObject={contactFormData}
+						// formObject={{
+						// 	panes: [
+						// 		{
+						// 			display: {
+						// 				title: `Quick Question? Reach out and I'll get back to you`,
+						// 			},
+						// 			inputs: {
+						// 				name: textInput({ placeholder: 'Your Name' }),
+						// 				email: textInput({ placeholder: 'Email Address' }),
+						// 			},
+						// 		},
+						// 	],
+						// }}
 						callback={onSubmitContact}
 					/>
 				)}
