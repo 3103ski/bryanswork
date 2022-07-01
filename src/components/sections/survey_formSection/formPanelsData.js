@@ -11,7 +11,7 @@ export const formData = {
 			inputs: {
 				fullName: textInput({ placeholder: 'Your Name' }),
 				email: textInput({ placeholder: 'Email' }),
-				websiteName: textInput({ placeholder: `What's the working name of your app or website?` }),
+				projectName: textInput({ placeholder: `What's the working name of your app or website?` }),
 				logo: yesNoQuestion(`Will you also need a logo designed for your project?`),
 				projectType: simpleDropMenu({
 					placeholder: 'What type of project to you need to make?',

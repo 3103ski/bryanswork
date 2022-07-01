@@ -9,7 +9,7 @@ import ViewWrapper from './ViewWrapper';
 
 export default function RequestQuote() {
 	return (
-		<ViewWrapper>
+		<ViewWrapper noFooter>
 			<ContactFormSection />
 		</ViewWrapper>
 	);

@@ -145,7 +145,7 @@ function Filter({ label = 'Add Label', onClick, callback, activeFilters = [] }) 
 			wrapper.style.minHeight = `${window.innerHeight - offset}px`;
 			window.scrollTo({
 				behavior: 'smooth',
-				top: top.getBoundingClientRect().top - document.body.getBoundingClientRect().top - offset - 20,
+				top: top.getBoundingClientRect().top - document.body.getBoundingClientRect().top - offset + 20,
 			});
 		}
 		if (callback) callback();
