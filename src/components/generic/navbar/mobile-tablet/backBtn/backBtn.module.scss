@@ -2,14 +2,13 @@
 
 .Wrapper {
 	@include flex-center-center;
-	padding: 6px 8px 3px 25px;
+	padding: 17px 12px 8px 45px;
 	position: fixed;
 	z-index: 802;
 	bottom: 0px;
 	transition: 0.2s;
-	// border-bottom-right-radius: 20px;
-	border-top-right-radius: map-get($borders, borders_small_radius);
-
+	border-top-right-radius: 40px;
+	// border-top-right-radius: map-get($borders, borders_small_radius);
 	background-color: map-get($colors, color_themeBlack);
 
 	svg {
@@ -23,7 +22,7 @@
 		left: -100%;
 	}
 	&[data-hide-back='0'] {
-		left: 40px;
+		left: 20px;
 	}
 
 	@media #{map-get($media, cpu_min)} {

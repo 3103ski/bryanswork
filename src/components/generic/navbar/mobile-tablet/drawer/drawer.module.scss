@@ -6,7 +6,7 @@
 	position: relative;
 	z-index: 121;
 	height: 100vh;
-	width: 300px;
+	width: 100vw;
 	background-color: map-get($colors, color_primary);
 	overflow-y: scroll;
 	padding-bottom: 70px;
