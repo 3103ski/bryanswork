@@ -17,8 +17,10 @@ export const RIGHT_DISC = `ant-design:right-circle-filled`;
 export const CLOSE_X = 'ep:close-bold';
 
 export const CIRCLE_CHECK = `akar-icons:circle-check-fill`;
-
 export const FILTERS_NO_FILL = 'bi:filter-circle';
+
+export const SLIDER_ARROW_LEFT = `akar-icons:circle-chevron-left-fill`;
+export const SLIDER_ARROW_RIGHT = `akar-icons:circle-chevron-right-fill`;
 
 export const STAR_FILLED = `bxs:star`;
 export const STAR_HALF = `bxs:star-half`;

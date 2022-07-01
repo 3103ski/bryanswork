@@ -9,14 +9,34 @@
 			@include p-default;
 		}
 	}
+}
+.FocusModalContent {
+	@include flex-center;
+	position: relative;
+}
+.SliderBtn {
+	@include no-select;
+	@include hover-cursor;
+	position: absolute;
+	z-index: 100;
+	font-size: 3rem;
+	color: map-get($colors, color_themeBlack);
+}
+.PrevIconWrapper {
+	left: -10px;
+}
 
-	.MockupThumbnail {
-		@include hover-cursor;
-		transition: 0.18s;
-		margin-bottom: 25px;
-		&:hover {
-			transform: scale(1.025);
-			@include shadow-default;
-		}
+.NextIconWrapper {
+	right: -10px;
+}
+
+.MockupThumbnail {
+	@include hover-cursor;
+	transition: 0.18s;
+	margin-bottom: 25px;
+
+	&:hover {
+		transform: scale(1.025);
+		@include shadow-default;
 	}
 }

@@ -3,11 +3,13 @@ import React from 'react';
 
 // --> Packages
 import { Grid, Image, Modal } from 'semantic-ui-react';
+import { Icon } from '@iconify/react';
 import BlockContent from '@sanity/block-content-to-react';
 
 // --> Project Imports
 import { Tabs, Section, TechTile } from 'components';
 import { intFromPx } from 'util';
+import { SLIDER_ARROW_LEFT, SLIDER_ARROW_RIGHT } from 'icons';
 
 // --> Component Imports
 import Style from './projectTabsSection.module.scss';
@@ -46,9 +48,28 @@ export default function ProjectTabsSection({ project }) {
 
 	function ImageCollection({ imageList = [] }) {
 		const [images, setImages] = React.useState(null);
+		const [focusIndex, setFocusIndex] = React.useState(0);
 		const [focusImage, setFocusImage] = React.useState(null);
 
-		const handleThumbnailClick = (i) => setFocusImage(images[i]);
+		const handleThumbnailClick = (i) => {
+			setFocusIndex(i);
+			return setFocusImage(images[i]);
+		};
+		const handleNavClick = (dir) => {
+			let newFocus = 0;
+			switch (dir) {
+				case 'right':
+					newFocus = focusIndex === images.length - 1 ? 0 : focusIndex + 1;
+					break;
+				case 'left':
+				default:
+					newFocus = focusIndex > 0 ? focusIndex - 1 : images.length - 1;
+					break;
+			}
+			console.log({ newFocus });
+			setFocusIndex(newFocus);
+			setFocusImage(images[newFocus]);
+		};
 
 		React.useEffect(() => {
 			if (imageList && imageList.length > 0 && !images) setImages(imageList);
@@ -56,10 +77,19 @@ export default function ProjectTabsSection({ project }) {
 
 		return (
 			<div>
-				<Modal inverted blur open={focusImage} onClose={() => setFocusImage(null)}>
-					<Modal.Content style={{ marginTop: `${intFromPx(Style.sizes_nav_height) + 40}px !important` }}>
-						<div className={Style.PrevPicture}>
-							<p>BACK</p>
+				<Modal dimmer='blurring' open={focusImage ? true : false} onClose={() => setFocusImage(null)}>
+					<Modal.Content
+						className={Style.FocusModalContent}
+						style={{ marginTop: `${intFromPx(Style.sizes_nav_height) + 40}px !important` }}>
+						<div
+							className={`${Style.PrevIconWrapper} ${Style.SliderBtn}`}
+							onClick={() => handleNavClick('left')}>
+							<Icon icon={SLIDER_ARROW_LEFT} />
+						</div>
+						<div
+							className={`${Style.NextIconWrapper} ${Style.SliderBtn}`}
+							onClick={() => handleNavClick('right')}>
+							<Icon icon={SLIDER_ARROW_RIGHT} />
 						</div>
 						<Image
 							fluid
