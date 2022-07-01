@@ -20,6 +20,7 @@ export default function Drawer({ open, toggle, children }) {
 			<motion.div
 				className={Style.DrawerWrapper}
 				variants={motion_variants_nav.mobile}
+				initial='drawerClosed'
 				animate={open ? 'drawerOpen' : 'drawerClosed'}>
 				{children}
 				<div className={Style.ButtonWrapper}>
