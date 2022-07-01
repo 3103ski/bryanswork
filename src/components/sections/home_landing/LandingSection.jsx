@@ -51,7 +51,7 @@ export default function HomeLandingSection() {
 									<Button space='10xy'>Explore My Work</Button>
 								</Link>
 								<Link to={REQUEST_QUOTE}>
-									<Button space='10xy'>Request Website Quote</Button>
+									<Button space='10xy'>Project Survey</Button>
 								</Link>
 							</div>
 						</Grid.Column>
