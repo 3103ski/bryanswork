@@ -23,10 +23,13 @@ export default function HomeLandingSection() {
 						<Grid.Row>
 							<Grid.Column computer={4} mobile={16} className={Style.ProfilePic}>
 								<img src={profile_pic} alt='bryan pic' />
+								<div className={Style.MobileName}>
+									<h1>BRYAN JASTRZEMBSKI</h1>
+								</div>
 							</Grid.Column>
 							<Grid.Column computer={12} mobile={16}>
 								<div className={Style.Text}>
-									<h1>BRYAN JASTRZEMBSKI</h1>
+									<h1 className={Style.DesktopName}>BRYAN JASTRZEMBSKI</h1>
 									<Divider />
 									<p id='landingText'>
 										A passion for web tech and a focus on using the <span>MERN</span> stack and{' '}
