@@ -10,6 +10,7 @@
 	@include remove-scrollbar;
 	border-bottom-left-radius: map-get($borders, borders_small_radius) !important;
 	border-bottom-right-radius: map-get($borders, borders_small_radius) !important;
+	max-height: 300px;
 }
 
 .ui.multiple.dropdown > .label {

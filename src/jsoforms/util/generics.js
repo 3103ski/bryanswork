@@ -1,5 +1,5 @@
 export const optionArray = (arr, text = null) =>
-	[{ key: 0, text: text ? `---> ${text} <---` : 'Select One', value: '' }, ...arr].map((o, i) => ({
+	[{ key: 0, text: text ? `---> ${text}` : 'Select One', value: '' }, ...arr].map((o, i) => ({
 		...o,
 		key: i + 1,
 	}));
