@@ -66,9 +66,7 @@ export default function DesktopNav({ services }) {
 					</DropMenu>
 					<RootLink to={NEED_WEBSITE}>Need A Website?</RootLink>
 				</div>
-				<div className={Style.RightLinks}>
-					<RootLink to={HOME}>Resume</RootLink>
-				</div>
+				<div className={Style.RightLinks}>{/* <RootLink to={HOME}>Resume</RootLink> */}</div>
 			</motion.nav>
 		</div>
 	);

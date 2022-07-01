@@ -33,7 +33,9 @@ export default function Header({ title, text, backgroundColor = '', buttons = []
 				<TextWrapper light={light ? true : null}>
 					<h1>{title}</h1>
 					{children ? children : <p>{text}</p>}
-					{renderButtons().map((b) => b)}
+					{renderButtons().map((b, i) => {
+						return <div key={`${i}__${Math.random()}`}>{b}</div>;
+					})}
 				</TextWrapper>
 			</Section>
 		</Section>

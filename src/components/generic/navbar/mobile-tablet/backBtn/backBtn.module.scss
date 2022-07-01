@@ -1,0 +1,28 @@
+@import 'sass';
+
+.Wrapper {
+	@include flex-center-center;
+	padding: 6px 8px 3px 25px;
+	position: fixed;
+	z-index: 802;
+	bottom: 0px;
+	transition: 0.2s;
+	// border-bottom-right-radius: 20px;
+	border-top-right-radius: map-get($borders, borders_small_radius);
+
+	background-color: map-get($colors, color_themeBlack);
+
+	svg {
+		// color: map-get($colors, color_themeBlack);
+		color: white;
+		font-size: 35px !important;
+		margin: 0 !important;
+	}
+
+	&[data-is-home='1'] {
+		left: -100%;
+	}
+	&[data-is-home='0'] {
+		left: 40px;
+	}
+}

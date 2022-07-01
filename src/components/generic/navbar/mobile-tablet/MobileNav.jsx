@@ -1,5 +1,6 @@
 // --> React
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 // Packages
@@ -15,6 +16,7 @@ import Drawer from './drawer/Drawer';
 import Link from './link/Link.jsx';
 import Style from './mobileNav.module.scss';
 import Toggle from './toggle/Toggle.jsx';
+import BackBtn from './backBtn/BackBtn';
 
 export default function MobileNav() {
 	const [open, toggleOpen] = React.useState(false);
@@ -56,6 +58,7 @@ export default function MobileNav() {
 				</Modal>
 			</div>
 			<Toggle toggle={() => toggleOpen(!open)} open={open} />
+			<BackBtn menuOpen={open} />
 			<div className={Style.Container}>
 				<Drawer open={open} toggle={toggleOpen}>
 					<Link.Container>
