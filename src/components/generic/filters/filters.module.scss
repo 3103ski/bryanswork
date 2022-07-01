@@ -142,7 +142,7 @@
 		@include flex-center;
 		padding: 20px 20px 20px 20px;
 		background-color: map-get($colors, color_themeWhite);
-		margin-bottom: 40px;
+		// margin-bottom: 40px;
 
 		.ShowingText {
 			@include flex-center;
