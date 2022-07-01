@@ -25,4 +25,8 @@
 	&[data-is-home='0'] {
 		left: 40px;
 	}
+
+	@media #{map-get($media, cpu_min)} {
+		display: none !important;
+	}
 }
