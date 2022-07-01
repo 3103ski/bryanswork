@@ -58,7 +58,7 @@ export function Footer() {
 						</Grid.Column>
 						<Grid.Column mobile={16} tablet={16} computer={3} className={Style.Right}>
 							<Button as={Link} to={REQUEST_QUOTE} fluid thin>
-								Request A Quote
+								Take Project Survey
 							</Button>
 
 							<div className={Style.Logos}></div>
