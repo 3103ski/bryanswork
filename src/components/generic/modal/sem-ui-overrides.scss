@@ -3,3 +3,7 @@
 .ui.modal > .content {
 	padding: 30px !important;
 }
+
+.ui .modal > .header {
+	border-radius: map-get($borders, borders_small_radius) !important;
+}

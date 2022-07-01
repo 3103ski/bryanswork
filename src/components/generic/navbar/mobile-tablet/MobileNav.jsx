@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react';
 // --> Project Imports
 import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, REQUEST_QUOTE, NEED_WEBSITE, CONTACT } from 'routes';
 import { Button, Modal } from 'components';
-import { PHONE, SURVEY } from 'icons';
+import { EMAIL, SURVEY } from 'icons';
 
 // --> Components Imports
 import Drawer from './drawer/Drawer';
@@ -30,9 +30,9 @@ export default function MobileNav() {
 		<>
 			<div className={Style.ContactWrapper} data-toggle-open={open ? 1 : 0}>
 				<div className={Style.ContactBtn} onClick={() => toggleContactOpen(true)}>
-					<Icon icon={PHONE} />
+					<Icon icon={EMAIL} />
 				</div>
-				<Modal isOpen={contactOpen} title={`Let's Work`} callback={toggleContactOpen}>
+				<Modal isOpen={contactOpen} title={`Contact Me`} callback={toggleContactOpen}>
 					<Button.FluidWrapper>
 						<Button
 							as={Link}
@@ -45,12 +45,12 @@ export default function MobileNav() {
 						</Button>
 						<Button
 							as={Link}
-							icon={PHONE}
+							icon={EMAIL}
 							to={CONTACT}
 							onClick={() => toggleContactOpen(false)}
 							fluid
 							space='10y'>
-							Contact Me
+							Send A Message
 						</Button>
 					</Button.FluidWrapper>
 				</Modal>

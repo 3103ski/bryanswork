@@ -22,13 +22,13 @@
 	animation-timing-function: ease-in-out;
 
 	.Header {
-		background-color: map-get($colors, color_secondary) !important;
-		border-top-left-radius: calc(#{map-get($borders, borders_small_radius)} - 4px) !important;
-		border-top-right-radius: calc(#{map-get($borders, borders_small_radius)} - 4px) !important;
+		background-color: map-get($colors, color_primary) !important;
+		border-top-left-radius: calc(#{map-get($borders, borders_small_radius)}) !important;
+		border-top-right-radius: calc(#{map-get($borders, borders_small_radius)}) !important;
 
 		.Title {
 			@include sub-default;
-			color: white;
+			color: map-get($colors, color_themeBlack);
 			font-weight: 700 !important;
 			margin: 0 !important;
 		}
