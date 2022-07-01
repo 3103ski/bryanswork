@@ -70,7 +70,6 @@
 	@media #{map-get($media, tablet_max)} {
 		.Top {
 			padding: 20px 10px 120px 10px;
-			min-height: unset !important;
 
 			.ProfilePic {
 				img {
@@ -92,6 +91,7 @@
 	@media #{map-get($media, mobile)} {
 		min-height: unset;
 		.Top {
+			min-height: unset !important;
 			padding-bottom: 140px !important;
 			.ProfilePic {
 				@include flex-center-center;
