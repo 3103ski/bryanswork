@@ -5,7 +5,7 @@ import React from 'react';
 import axios from 'axios';
 
 // --> Project Imports
-import { ReactJSOForm, textInput, FormSuccess } from 'jsoforms';
+import { ReactJSOForm, FormSuccess } from 'jsoforms';
 import { Section, Loading } from 'components';
 import { SERVER_CONTACT_FORMS } from 'routes';
 import { contactFormData } from './contactFormData';
