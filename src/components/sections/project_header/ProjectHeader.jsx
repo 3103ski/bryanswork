@@ -31,14 +31,16 @@ export default function ProjectHeader({ project }) {
 								<Detail label='Category' text={project.category} />
 								<Detail label='Year' text={project.year} />
 								<Detail label='Status' text={project.status} />
-								<Button
-									as='a'
-									thin
-									className={Style.ProjectLink}
-									target='_blank'
-									href={project.projectLink}>
-									Visit Project
-								</Button>
+								{!project.projectLink ? null : (
+									<Button
+										as='a'
+										thin
+										className={Style.ProjectLink}
+										target='_blank'
+										href={project.projectLink}>
+										Visit Project
+									</Button>
+								)}
 							</div>
 						</Grid.Column>
 					</Grid.Row>

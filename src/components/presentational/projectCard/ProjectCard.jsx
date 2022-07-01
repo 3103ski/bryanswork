@@ -49,23 +49,21 @@ export function ProjectCard({ project, activeFilters = [] }) {
 								to={`${PROJECT_PAGE}/${project.slug.current}`}
 								color='primary'
 								thin
-								space='10y'
-								// icon={ARROW_RIGHT}
-								// iconLeft={false}
-							>
+								space='10y'>
 								Read More  
 							</Button>
-							<Button
-								as='a'
-								href={project.projectLink}
-								target='_blank'
-								color='none'
-								icon={ARROW_RIGHT}
-								// iconLeft={false}
-								thin
-								space='10y'>
-								Visit Project
-							</Button>
+							{!project.projectLink ? null : (
+								<Button
+									as='a'
+									href={project.projectLink}
+									target='_blank'
+									color='none'
+									icon={ARROW_RIGHT}
+									thin
+									space='10y'>
+									Visit Project
+								</Button>
+							)}
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
