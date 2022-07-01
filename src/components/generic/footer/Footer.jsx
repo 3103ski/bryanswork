@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 
 // --> Project Imports
+import { intFromPx } from 'util';
 import { Section, Divider, Button } from 'components';
 import { EXPLORE_PROJECTS, EXPLORE_TECH, REQUEST_QUOTE, NEED_WEBSITE, CONTACT } from 'routes';
 
@@ -15,12 +16,12 @@ import Style from './footer.module.scss';
 export function Footer() {
 	return (
 		<div className={Style.Outer}>
-			<Section className={Style.Inner}>
+			<Section className={Style.Inner} fluid={window.innerWidth < intFromPx(Style.bp_tablet) ? true : false}>
 				<Grid className={Style.Grid} textAlign='center'>
 					<Grid.Row>
 						<Grid.Column tablet={16} mobile={16} computer={9} textAlign='left'>
 							<h3>Bryan Jastrzembski</h3>
-							<p>Seattle, Wa</p>
+							<p className={Style.City}>Seattle, Wa</p>
 							<Divider indent={false} spaceBottom={false} />
 							<div className={Style.Links}>
 								<Grid columns={3}>
@@ -32,7 +33,7 @@ export function Footer() {
 										</Grid.Column>
 										<Grid.Column>
 											<Link to={EXPLORE_TECH}>
-												<p>Explore Tech Experience</p>
+												<p>Tech Experience</p>
 											</Link>
 										</Grid.Column>
 										<Grid.Column>

@@ -23,6 +23,7 @@
 
 		p {
 			@include p-small;
+			margin-bottom: 5px;
 		}
 
 		.Grid {
@@ -49,7 +50,21 @@
 		background-color: map-get($colors, color_defaultBlack);
 	}
 
-	@media #{map-get($media, mobile)} {
+	@media #{map-get($media, tablet_max)} {
+		padding-bottom: 0 !important;
+
+		.Inner {
+			@include flex-col-center-center;
+			border-radius: 0 !important;
+			padding-bottom: 85px;
+
+			p {
+				font-size: 16px !important;
+				margin: 0 !important;
+				padding: 5px 0 !important;
+			}
+		}
+
 		.ThinBar {
 			display: none;
 		}
