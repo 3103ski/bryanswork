@@ -19,10 +19,10 @@
 		margin: 0 !important;
 	}
 
-	&[data-is-home='1'] {
+	&[data-hide-back='1'] {
 		left: -100%;
 	}
-	&[data-is-home='0'] {
+	&[data-hide-back='0'] {
 		left: 40px;
 	}
 
