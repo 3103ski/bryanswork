@@ -46,12 +46,12 @@ export function Footer() {
 												<p>Contact</p>
 											</Link>
 										</Grid.Column>
-										<Grid.Column>
+										{/* <Grid.Column>
 											<p>FAQs</p>
 										</Grid.Column>
 										<Grid.Column>
 											<p>Privacy Policy</p>
-										</Grid.Column>
+										</Grid.Column> */}
 									</Grid.Row>
 								</Grid>
 							</div>
