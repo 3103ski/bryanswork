@@ -25,12 +25,13 @@
 		background-color: map-get($colors, color_themeWhite);
 		width: 100%;
 		margin: 20px auto;
-		padding: 50px 20px;
+		padding: 30px 20px;
 		border-radius: map-get($borders, borders_small_radius);
 		transition: 0.18s;
 
 		h3 {
 			@include sub-default;
+			text-align: center !important;
 			margin-bottom: 25px !important;
 		}
 

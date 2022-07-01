@@ -16,7 +16,7 @@ import Style from './needSiteHeader.module.scss';
 
 export default function NeedSiteHeader() {
 	const OptionCard = ({ icon, text, route }) => (
-		<Grid.Column computer={5} tablet={13} mobile={16} className={Style.OptionColumn}>
+		<Grid.Column computer={5} tablet={13} mobile={8} className={Style.OptionColumn}>
 			<Link to={route}>
 				<div className={Style.OptionCard}>
 					<h3>{text}</h3>
@@ -33,7 +33,7 @@ export default function NeedSiteHeader() {
 						<h1>Need A Developer?</h1>
 					</Grid.Column>
 					<OptionCard text={`Send A Message`} icon={EMAIL} route={CONTACT} />
-					<OptionCard text='Take Project Survey' icon={SURVEY} route={REQUEST_QUOTE} />
+					<OptionCard text='Project Survey' icon={SURVEY} route={REQUEST_QUOTE} />
 					<OptionCard text='Explore Work' icon={SURVEY} route={EXPLORE_PROJECTS} />
 				</Grid.Row>
 				<Grid.Row>
