@@ -66,7 +66,6 @@ export default function ProjectTabsSection({ project }) {
 					newFocus = focusIndex > 0 ? focusIndex - 1 : images.length - 1;
 					break;
 			}
-			console.log({ newFocus });
 			setFocusIndex(newFocus);
 			setFocusImage(images[newFocus]);
 		};

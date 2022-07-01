@@ -10,7 +10,7 @@ export const contactFormData = {
 				subtext: `If you have questions about work or working with me, send me a message here and I'll get back to you.`,
 			},
 			inputs: {
-				fullName: textInput({ placeholder: 'Your Name' }),
+				name: textInput({ placeholder: 'Your Name' }),
 				email: textInput({ placeholder: 'Email' }),
 				message: textInput({ placeholder: 'Message' }),
 			},
