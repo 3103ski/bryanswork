@@ -14,7 +14,7 @@ export default function NeedDevSection() {
 			title='Need A Developer ?'
 			text='If you need a website or web app, you can get an estimate by filling out a quote form.
 			Feel free to contact me with questions'
-			button1={{ text: `Request A Quote`, route: REQUEST_QUOTE }}
-			button2={{ text: `Send A Message`, route: REQUEST_QUOTE }}></HomePageSection>
+			button1={{ text: `Project Survey`, route: REQUEST_QUOTE }}
+			button2={{ text: `Message Me`, route: REQUEST_QUOTE }}></HomePageSection>
 	);
 }
