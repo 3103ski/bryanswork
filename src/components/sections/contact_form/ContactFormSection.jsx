@@ -47,23 +47,7 @@ export default function ContactFormSection() {
 						<p></p>
 					</FormSuccess>
 				) : (
-					<ReactJSOForm
-						formObject={contactFormData}
-						// formObject={{
-						// 	panes: [
-						// 		{
-						// 			display: {
-						// 				title: `Quick Question? Reach out and I'll get back to you`,
-						// 			},
-						// 			inputs: {
-						// 				name: textInput({ placeholder: 'Your Name' }),
-						// 				email: textInput({ placeholder: 'Email Address' }),
-						// 			},
-						// 		},
-						// 	],
-						// }}
-						callback={onSubmitContact}
-					/>
+					<ReactJSOForm formObject={contactFormData} callback={onSubmitContact} />
 				)}
 			</Section>
 		</div>
