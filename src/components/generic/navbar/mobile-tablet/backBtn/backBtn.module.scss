@@ -26,6 +26,12 @@
 		left: 20px;
 	}
 
+	.Home {
+		position: absolute;
+		right: -100%;
+		background-color: red;
+	}
+
 	@media #{map-get($media, cpu_min)} {
 		display: none !important;
 	}

@@ -7,6 +7,7 @@ https://icon-sets.iconify.design
 export const PHONE = `carbon:phone-voice-filled`;
 export const MONEY = `bxs:dollar-circle`;
 export const SURVEY = 'fa6-solid:list-check';
+export const HOME = 'akar-icons:home-alt1';
 
 // -->  Layout Icons
 export const BACK_ARROW = `akar-icons:arrow-left`;

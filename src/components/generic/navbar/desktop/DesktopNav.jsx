@@ -1,6 +1,6 @@
 // --> React
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 // --> Packages
 import { motion } from 'framer-motion';
@@ -8,12 +8,10 @@ import { Icon } from '@iconify/react';
 
 // --> Project Imports
 import { motion_variants_nav } from 'util';
-// import { Button } from 'components';
 import { HOME, EXPLORE_PROJECTS, EXPLORE_TECH, NEED_WEBSITE } from 'routes';
-import { BACK_ARROW } from 'icons';
+import { BACK_ARROW, HOME as HomeIcon } from 'icons';
 
 // --> Component Imports
-// import NavBranding from './branding/Branding';
 import DropMenu from './links/dropMenu/DropMenu';
 import RootLink from './links/rootLink/RootLink';
 import Style from './desktopNav.module.scss';
@@ -55,6 +53,11 @@ export default function DesktopNav({ services }) {
 					<svg width={'100%'} height={'100%'}>
 						<path d='M 0 0 l 100 0 q 0 100 -100 100 l -100 0 ' fill={Style.color_primary} />
 					</svg>
+				</div>
+				<div className={Style.Home} data-is-home={location.pathname === HOME ? 1 : 0}>
+					<Link to={HOME}>
+						<Icon icon={HomeIcon} />
+					</Link>
 				</div>
 				<div className={Style.CenterLinks}>
 					<DropMenu
